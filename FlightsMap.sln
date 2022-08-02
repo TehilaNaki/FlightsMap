@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{C7F7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\DAL\DAL.csproj", "{ED6BDE0C-A664-4688-8631-CE9C270E8140}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlightsMap", "FlightsMap", "{4A22ABEB-BDFD-4A99-A4D4-8A121BEA4B59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AB3D64EE-995A-4D23-9255-161CA11195A2} = {4A22ABEB-BDFD-4A99-A4D4-8A121BEA4B59}
+		{C7F7466B-3A68-4542-86FF-330F8833AE49} = {4A22ABEB-BDFD-4A99-A4D4-8A121BEA4B59}
+		{ED6BDE0C-A664-4688-8631-CE9C270E8140} = {4A22ABEB-BDFD-4A99-A4D4-8A121BEA4B59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90695887-61CA-4493-AE30-CA3EA2BAE386}
