@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace BL
 {
-    interface IBL
+    class BLImp :IBL
     {
-       // List<ViewFlight> getAllFlights();
     }
 }
