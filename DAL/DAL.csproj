@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlightContext.cs" />
+    <Compile Include="DB\FlightContext.cs" />
     <Compile Include="DLImp.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,9 +60,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DB\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BO\BO.csproj">
       <Project>{55f4bb3f-12f9-4feb-a767-60016cc0e5ea}</Project>

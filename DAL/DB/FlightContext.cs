@@ -11,6 +11,7 @@ namespace DAL.DB
     class FlightContext:DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Watch> Watches { get; set; }
 
     }
 

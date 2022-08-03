@@ -55,15 +55,15 @@ namespace FlightsMap
             else
             {
 
-                //if (bl.ExistUser(new BO.User { UserId = myUser.UserId, Password = myUser.Password, Email = myUser.Email }))
-                //{
+                if (bl.ExistUser(new BO.User { UserId = myUser.UserId, Password = myUser.Password, Email = myUser.Email }))
+                {
                     MainWindow main = new MainWindow(myUser);
                     main.Show();
                     passwordBox.Text = "";
                     username1.Text = "";
                     Close();
-              //  }
-               // else MessageBox.Show("Incorrect Username or Password");
+                }
+                else MessageBox.Show("Incorrect Username or Password");
 
             }
         }

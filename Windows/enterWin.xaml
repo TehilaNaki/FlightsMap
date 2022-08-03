@@ -5,27 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
      
         mc:Ignorable="d"
-        Title="enterWin" Height="450" Width="500">
+        Title="enterWin" Height="450" Width="450">
     <Grid>
         <Label Content="Flights Center" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" FontWeight="Medium" FontFamily="Times New Roman" Foreground="#FFC56853" Margin="147,21,0,360" Height="39" Width="217"/>
         <TabControl  Margin="0,49,0.2,0">
 
             <TabItem Header="Log in">
                 <Grid >
-                    <TextBox x:Name="username" HorizontalAlignment="Left" Height="33" Margin="191,70,0,0"  VerticalAlignment="Top" Width="172" MaxLength="10" Text = "{Binding UserId, Mode=OneWayToSource}"/>
-                    <TextBox x:Name="password" HorizontalAlignment="Left" Height="33" Margin="191,135,0,0" VerticalAlignment="Top" Width="172" MaxLength="6" Text = "{Binding Password, Mode=OneWayToSource}"/>
+                    <TextBox x:Name="username" HorizontalAlignment="Left" Height="33" Margin="168,75,0,0"  VerticalAlignment="Top" Width="102" MaxLength="10" Text = "{Binding UserId, Mode=OneWayToSource}"/>
+                    <TextBox x:Name="password" HorizontalAlignment="Left" Height="33" Margin="168,135,0,0" VerticalAlignment="Top" Width="102" MaxLength="6" Text = "{Binding Password, Mode=OneWayToSource}"/>
 
-                    <Label Content="User name / Email" HorizontalAlignment="Left" Height="38" Margin="10,65,0,0" VerticalAlignment="Top" Width="155" FontWeight="Bold" FontSize="16"/>
+                    <Label Content="User name" HorizontalAlignment="Left" Height="33" Margin="31,75,0,0" VerticalAlignment="Top" Width="102" FontWeight="Bold" FontSize="16"/>
                     <Label Content="Password" HorizontalAlignment="Left" Height="33" Margin="31,135,0,0" VerticalAlignment="Top" Width="102" FontWeight="Bold" FontSize="16"/>
                     <Button x:Name="enter" Content="Enter" HorizontalAlignment="Left" Height="34" Margin="157,231,0,0" VerticalAlignment="Top" Width="147" Click="EnterClick" FontSize="16" FontWeight="Bold"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Sign up">
                 <Grid>
-                    <Label Content="User name" HorizontalAlignment="Left" Height="32" Margin="14,40,0,0" VerticalAlignment="Top" Width="96" FontWeight="Bold" FontSize="16"/>
+                    <Label Content="User name" HorizontalAlignment="Left" Height="33" Margin="14,40,0,0" VerticalAlignment="Top" Width="96" FontWeight="Bold" FontSize="16" />
                     <Label Content="Password" Height="33" Margin="14,90,326,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
                     <Label Content="Email" Height="33" Margin="14,133,326,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                    <TextBox x:Name="passwordBox" MaxLength="6" Margin="158,90,148,225.2" Text = "{Binding Password, Mode=OneWayToSource}"/>
+                    <TextBox x:Name="passwordBox" MaxLength="6" Margin="158,90,97.6,220.2" Text = "{Binding Password, Mode=OneWayToSource}" FontWeight="Bold"/>
                     <TextBox x:Name="email" HorizontalAlignment="Left" Height="32" Margin="158,40,0,0"  VerticalAlignment="Top" Width="182" MaxLength="10" FontSize="16" Text = "{Binding Email, Mode=OneWayToSource}"/>
                     <TextBox x:Name="username1" HorizontalAlignment="Left" Height="30" Margin="158,133,0,0"  VerticalAlignment="Top" Width="182" MaxLength="10" FontSize="16" Text = "{Binding UserId, Mode=OneWayToSource}"/>
                     <Button x:Name="enter1" Content="Sign Up"  HorizontalAlignment="Left" Height="34" Margin="158,219,0,0" VerticalAlignment="Top" Width="147" Click="SignUpClick" FontWeight="Bold" FontSize="16"/>
