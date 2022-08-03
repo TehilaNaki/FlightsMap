@@ -15,6 +15,9 @@ namespace BO
         [Key, Column(Order = 1)]
         public DateTime Date { get; set; }
         [Key, Column(Order = 2)]
-        public string flightNumber { get; set; }
+        public string FlightNumber { get; set; }
+        public string Origin { get; set; }
+        public string Destination { get; set; }
+
     }
 }

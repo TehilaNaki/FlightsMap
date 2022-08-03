@@ -1,4 +1,5 @@
 ﻿using FlightsMap.PO;
+using FlightsMap.Windows;
 using System.Windows;
 
 namespace FlightsMap
@@ -15,6 +16,13 @@ namespace FlightsMap
             MyUser = u;
             myMap.Focus();
 
+        }
+
+
+        private void WatchClick(object sender, RoutedEventArgs e)
+        {
+            WatchesWin w = new WatchesWin(MyUser);
+            w.Show();
         }
     }
 }
