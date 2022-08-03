@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL;
+using BO;
+using System;
 
 namespace BL
 {
-    class BLImp :IBL
+    public class BLImp : IBL
     {
+        DLImp dl = new DLImp();
+        public void AddUser(User u)
+        {
+            dl.AddUser(u);
+        }
+
+        public bool ExistUser(User u)
+        {
+            return dl.ExistUser(u);
+        }
     }
 }

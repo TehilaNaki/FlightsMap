@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
+using BO;
 
 namespace BL
 {
     interface IBL
     {
-       // List<ViewFlight> getAllFlights();
+        void AddUser(User u);
+        bool ExistUser(User u);
     }
 }

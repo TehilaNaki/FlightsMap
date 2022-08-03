@@ -8,8 +8,8 @@
     <ProjectGuid>{2116111B-3446-4112-ACBF-62D48B3FEF16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>D</RootNamespace>
-    <AssemblyName>D</AssemblyName>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -51,35 +51,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DO\Aircraft.cs" />
-    <Compile Include="DO\Airline.cs" />
-    <Compile Include="DO\Airport.cs" />
-    <Compile Include="DO\Class1.cs" />
-    <Compile Include="DO\Country.cs" />
-    <Compile Include="DO\Destination.cs" />
-    <Compile Include="DO\Estimated.cs" />
-    <Compile Include="DO\EventTime.cs" />
-    <Compile Include="DO\FlightHistory.cs" />
-    <Compile Include="DO\Historical.cs" />
-    <Compile Include="DO\Identification.cs" />
-    <Compile Include="DO\Info.cs" />
-    <Compile Include="DO\Origin.cs" />
-    <Compile Include="DO\Position.cs" />
-    <Compile Include="DO\Real.cs" />
-    <Compile Include="DO\Region.cs" />
-    <Compile Include="DO\Root.cs" />
-    <Compile Include="DO\Scheduled.cs" />
-    <Compile Include="DO\Status.cs" />
-    <Compile Include="DO\Time.cs" />
-    <Compile Include="DO\Timezone.cs" />
-    <Compile Include="DO\ViewFlight.cs" />
-    <Compile Include="FlightContext.cs" />
+    <Compile Include="DLImp.cs" />
+    <Compile Include="DB\FlightContext.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BO\BO.csproj">
+      <Project>{55f4bb3f-12f9-4feb-a767-60016cc0e5ea}</Project>
+      <Name>BO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
