@@ -39,7 +39,7 @@ namespace DAL
         {
             using (var ctx = new FlightContext())
             {
-                if (ctx.Users.Find(u) != null)
+                if (ctx.Users.Find(u.UserId) != null)
                     return true;
                 return false;
             }

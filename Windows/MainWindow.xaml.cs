@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using FlightsMap.PO;
+using System.Windows;
 
 namespace FlightsMap
 {
@@ -7,9 +8,11 @@ namespace FlightsMap
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        UserPO MyUser;
+        public MainWindow(UserPO u)
         {
             InitializeComponent();
+            MyUser = u;
             myMap.Focus();
 
         }

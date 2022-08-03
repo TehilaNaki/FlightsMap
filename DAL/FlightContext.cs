@@ -10,7 +10,6 @@ namespace DAL.DB
 {
     class FlightContext:DbContext
     {
-        public FlightContext(): base("FlightsMapDB"){}
         public DbSet<User> Users { get; set; }
 
     }

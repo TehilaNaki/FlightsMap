@@ -21,7 +21,7 @@ namespace FlightsMap
     /// </summary>
     public partial class enterWin : Window
     {
-        User myUser=new User();
+        UserPO myUser = new UserPO { UserId = "tehila", Password = "11", Email = "11@" };
         BLImp bl = new BLImp();
 
         public enterWin()
@@ -38,10 +38,10 @@ namespace FlightsMap
             }
             else
             {
-                //bl.AddUser(myUser);
+                bl.AddUser(new BO.User { UserId = myUser.UserId, Password = myUser.Password, Email = myUser.Email });
                 MessageBox.Show("Manager user:" + myUser.UserId + " added succsesfully!");
-               // MainWindow main = new MainWindow(myUser);
-            //    main.Show();
+                MainWindow main = new MainWindow(myUser);
+                main.Show();
                 passwordBox.Text = "";
                 username1.Text = "";
                 Close();
@@ -55,11 +55,15 @@ namespace FlightsMap
             else
             {
 
-              //if (bl.ExistUser(myUser))
-              //  {
-
+                //if (bl.ExistUser(new BO.User { UserId = myUser.UserId, Password = myUser.Password, Email = myUser.Email }))
+                //{
+                    MainWindow main = new MainWindow(myUser);
+                    main.Show();
+                    passwordBox.Text = "";
+                    username1.Text = "";
+                    Close();
               //  }
-             //   else MessageBox.Show("Incorrect Username or Password");
+               // else MessageBox.Show("Incorrect Username or Password");
 
             }
         }

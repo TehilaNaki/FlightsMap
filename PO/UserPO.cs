@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FlightsMap.PO
 {
-    class User: INotifyPropertyChanged
+   public class UserPO: INotifyPropertyChanged
     {
         private string userId;
         public string UserId
