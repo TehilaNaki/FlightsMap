@@ -1,4 +1,5 @@
 ﻿using BO;
+using System;
 using System.Collections.Generic;
 
 namespace BL
@@ -9,6 +10,6 @@ namespace BL
         bool ExistUser(User u);
         void AddWatch(Watch w);
         List<Watch> GetAllWatches();
-        List<Watch> GetUserWatches(string userName);
+        List<Watch> GetUserWatches(string userName, DateTime start, DateTime end);
     }
 }

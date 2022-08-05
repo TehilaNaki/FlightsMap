@@ -50,6 +50,7 @@
     <Compile Include="Flights\Destination.cs" />
     <Compile Include="Flights\Estimated.cs" />
     <Compile Include="Flights\EventTime.cs" />
+    <Compile Include="Flights\Flight.cs" />
     <Compile Include="Flights\FlightHistory.cs" />
     <Compile Include="Flights\Historical.cs" />
     <Compile Include="Flights\Identification.cs" />

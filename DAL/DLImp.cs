@@ -12,10 +12,10 @@ namespace DAL
     {
         public void AddUser(User u)
         {
-            using (var ctx = new FlightContext())
+            using (var db = new FlightContext())
             {
-                ctx.Users.Add(u);
-                ctx.SaveChanges();
+                db.Users.Add(u);
+                db.SaveChanges();
             }
            
         }
@@ -45,6 +45,12 @@ namespace DAL
             }
         }
 
-      
+        public List<Watch> GetUserWatches(string userName, DateTime start, DateTime end)
+        {
+            using (var db = new FlightContext())
+            {
+               return (List<Watch>)db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start);
+            }
+        }
     }
 }

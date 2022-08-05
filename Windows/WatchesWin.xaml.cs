@@ -30,7 +30,15 @@ namespace FlightsMap.Windows
         {
             InitializeComponent();
             myUser = u;
-            watchList= new ObservableCollection<Watch>(bl.GetUserWatches(myUser.UserId));
+            listView.ItemsSource= bl.GetUserWatches(myUser.UserId,DateTime.Today,DateTime.Today);
         }
-    }
+
+        private void DateChangedEvent(object sender, RoutedEventArgs e)
+        {
+            DateTime start = calender.SelectedDates.First();
+            DateTime end = calender.SelectedDates.Last();
+            listView.ItemsSource = bl.GetUserWatches(myUser.UserId,start,end);
+
+        }
+        }
 }

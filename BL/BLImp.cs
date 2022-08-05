@@ -29,9 +29,13 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public List<Watch> GetUserWatches(string userName)
+        public List<Watch> GetUserWatches(string userName,DateTime start,DateTime end)
         {
-            throw new NotImplementedException();
+
+            return dl.GetUserWatches(userName, start, end);
+                //new List<Watch> { new Watch { Destination = "Fdc", Origin = "rcd", Date = new DateTime(2022, 10, 21) } };
         }
+
+       
     }
 }

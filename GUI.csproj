@@ -140,6 +140,17 @@
       <Name>BO</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="UserControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\airplane_take_off_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\airplane_landing_100px.png" />
+    <Resource Include="Windows\airplane_mode_on_52px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
