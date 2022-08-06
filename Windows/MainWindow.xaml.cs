@@ -1,6 +1,6 @@
-﻿using BO;
+﻿using BL;
+using BO;
 using FlightsMap.PO;
-using FlightsMap.UserControls;
 using FlightsMap.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System;
@@ -16,14 +16,30 @@ namespace FlightsMap
     public partial class MainWindow : Window
     {
         UserPO MyUser { get; set; }
+        BLImp bl=new BLImp();
         public MainWindow()
         {
             InitializeComponent();
            // MyUser = u;
             myMap.Focus();
             AddPushPines();
+            setTitle();
+           
            // ClockSign(10);
         }
+
+        private void setTitle()
+        {
+            string holiday=bl.GetNextWeekHolidies();
+            if (holiday != "")
+            {
+                holidayTitle.Content = "Flights Center - Now is a Holiday Week :" + holiday;
+            }
+            else holidayTitle.Content = "Flights Center";
+
+
+        }
+
         private void ClockSign(int seconds)
         {
             DispatcherTimer timer = new DispatcherTimer();
@@ -41,7 +57,7 @@ namespace FlightsMap
                 Location = new Location() { Latitude = 33, Longitude = 33 },
                 Template = template,
             };
-            push.MouseEnter += Push_MouseEnter;
+            push.MouseDoubleClick += Push_MouseEnter;
             myMap.Children.Add(push);
         }
         private void Push_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)

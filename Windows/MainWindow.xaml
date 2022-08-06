@@ -14,20 +14,22 @@
     </Window.Resources>
    
         <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="80"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
         <m:Map x:Name="myMap"   Background="White" Center="31,35" ZoomLevel="4" 
                Mode="Road"  CredentialsProvider="ldthgmBlL93BCM9rLBSM~eCbL9zZTc24E1ojrhTZTsA~AlCdRbfK5wq7Vi3wWaZ4KDljeV-oiXDPo4caheeT2-Kq4TL-XJqdQFHJZYbZey0t" Margin="10,0,5.6,-0.6" 
-               >
+              Grid.Row="1" >
         </m:Map>
         <Button x:Name="btnCreatePolygon" 
                         HorizontalAlignment="Right" VerticalAlignment="Top" Tag="false"
-                         Height="25" Width="80" Margin="0,0,0.2,0" Click="WatchClick" Grid.Column="1">
+                         Height="40" Width="100" Margin="0,0,0.2,0" Click="WatchClick" Grid.Row="0">
                 <TextBlock x:Name="txtButton">My History</TextBlock>
             </Button>
-        </Grid>
+            <Label Name="holidayTitle" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="590"/>
+
+    </Grid>
    
 </Window>

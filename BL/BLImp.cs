@@ -29,6 +29,11 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        public string GetNextWeekHolidies()
+        {
+            return dl.GetNextWeekHolidies();
+        }
+
         public List<Watch> GetUserWatches(string userName,DateTime start,DateTime end)
         {
 

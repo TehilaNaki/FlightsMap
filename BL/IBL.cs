@@ -11,5 +11,6 @@ namespace BL
         void AddWatch(Watch w);
         List<Watch> GetAllWatches();
         List<Watch> GetUserWatches(string userName, DateTime start, DateTime end);
+        string GetNextWeekHolidies();
     }
 }
