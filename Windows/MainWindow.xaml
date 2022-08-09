@@ -2,8 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
-        Title="Map" Height="450" Width="700">
-
+        Height="450" Width="750"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Window.Resources>
         <ControlTemplate x:Key="pushpin_custom">
             <StackPanel ToolTipService.ToolTip="{Binding Path=MapItem.Information}"  >
@@ -15,7 +16,7 @@
    
         <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -24,11 +25,13 @@
               Grid.Row="1" >
         </m:Map>
         <Button x:Name="btnCreatePolygon" 
-                        HorizontalAlignment="Right" VerticalAlignment="Top" Tag="false"
-                         Height="40" Width="100" Margin="0,0,0.2,0" Click="WatchClick" Grid.Row="0">
+                        HorizontalAlignment="Right" Click="WatchClick" Grid.Row="0">
                 <TextBlock x:Name="txtButton">My History</TextBlock>
             </Button>
-            <Label Name="holidayTitle" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="590"/>
+        <Label Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35" FontWeight="bold" Margin="10,10,0,0"/>
+        <Label Name="holidayTitle" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="373" FontSize="23" FontWeight="bold" Height="40" Margin="251,24,0,0"/>
+   
+
 
     </Grid>
    

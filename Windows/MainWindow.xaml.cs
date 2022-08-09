@@ -16,10 +16,10 @@ namespace FlightsMap
     {
         User MyUser { get; set; }
         BLImp bl=new BLImp();
-        public MainWindow()
+        public MainWindow(User u)
         {
             InitializeComponent();
-           // MyUser = u;
+            MyUser = u;
             myMap.Focus();
             AddPushPines();
             setTitle();
@@ -32,9 +32,9 @@ namespace FlightsMap
             string holiday=bl.GetNextWeekHolidies();
             if (holiday != "")
             {
-                holidayTitle.Content = "Flights Center - Now is a Holiday Week :" + holiday;
+                holidayTitle.Content = " - Now is a Holiday Week :" + holiday;
             }
-            else holidayTitle.Content = "Flights Center";
+            else holidayTitle.Content = "";
 
 
         }

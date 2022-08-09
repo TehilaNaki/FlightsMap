@@ -29,7 +29,7 @@ namespace FlightsMap.Windows
         {
             InitializeComponent();
             myUser = u;
-            listView.ItemsSource= bl.GetUserWatches(myUser.UserId,DateTime.Today,DateTime.Today);
+            //listView.ItemsSource= bl.GetUserWatches(myUser.UserId,DateTime.Today,DateTime.Today);
         }
 
         private void DateChangedEvent(object sender, RoutedEventArgs e)
