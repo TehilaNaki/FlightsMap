@@ -1,4 +1,5 @@
 ﻿using BO;
+using BO.Flights;
 using System;
 using System.Collections.Generic;
 
@@ -12,5 +13,9 @@ namespace BL
         List<Watch> GetAllWatches();
         List<Watch> GetUserWatches(string userName, DateTime start, DateTime end);
         string GetNextWeekHolidies();
+
+        Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights();
+
+
     }
 }

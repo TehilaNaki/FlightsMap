@@ -52,6 +52,8 @@
     <Compile Include="Flights\EventTime.cs" />
     <Compile Include="Flights\Flight.cs" />
     <Compile Include="Flights\FlightHistory.cs" />
+    <Compile Include="Flights\FlightInfoPartial.cs" />
+    <Compile Include="Flights\HelperClass.cs" />
     <Compile Include="Flights\Historical.cs" />
     <Compile Include="Flights\Identification.cs" />
     <Compile Include="Flights\Info.cs" />

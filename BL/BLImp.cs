@@ -3,6 +3,7 @@ using BO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using BO.Flights;
 
 namespace BL
 {
@@ -29,6 +30,8 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        
+
         public string GetNextWeekHolidies()
         {
             return dl.GetNextWeekHolidies();
@@ -41,6 +44,13 @@ namespace BL
                 //new List<Watch> { new Watch { Destination = "Fdc", Origin = "rcd", Date = new DateTime(2022, 10, 21) } };
         }
 
-       
+        #region flights
+        public Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights()
+        {
+           return dl.GetCurrentFlights();
+        }
+        #endregion
+
+
     }
 }

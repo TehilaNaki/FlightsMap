@@ -1,4 +1,5 @@
 ﻿using BO;
+using BO.Flights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace DAL
         void UpdatePassword(User u, string newPassword);
         bool ExistUser(User u);
         List<Watch> GetUserWatches(string userName, DateTime start, DateTime end);
-       // List<Flight> GetAllFlights();
+
+        Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights();
     }
 }
