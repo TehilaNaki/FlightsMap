@@ -33,11 +33,9 @@ namespace BO
         public int CompareTo(object obj)
         {
             Item i2 = (Item)obj;
-            if (i2.subcat == "fast")
-                return -1;
             if (i2.subcat == "minor" && subcat == "major")
                 return -1;
-            if (i2.subcat == "minor" && subcat == "fast")
+            if (subcat == "minor" && i2.subcat == "major")
                 return 1;
             return 0;
         }

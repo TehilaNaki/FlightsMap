@@ -1,5 +1,5 @@
 ﻿using BL;
-using FlightsMap.PO;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace FlightsMap
     /// </summary>
     public partial class enterWin : Window
     {
-        UserPO myUser = new UserPO { UserId = "tehila", Password = "11", Email = "11@" };
+        User myUser = new User { UserId = "tehila", Password = "11", Email = "11@" };
         BLImp bl = new BLImp();
 
         public enterWin()
@@ -40,7 +40,7 @@ namespace FlightsMap
             {
                 bl.AddUser(new BO.User { UserId = myUser.UserId, Password = myUser.Password, Email = myUser.Email });
                 MessageBox.Show("Manager user:" + myUser.UserId + " added succsesfully!");
-             //   MainWindow main = new MainWindow(myUser);
+                //MainWindow main = new MainWindow(myUser);
                 //main.Show();
                 passwordBox.Text = "";
                 username1.Text = "";
@@ -57,8 +57,8 @@ namespace FlightsMap
 
                 if (bl.ExistUser(new BO.User { UserId = myUser.UserId, Password = myUser.Password, Email = myUser.Email }))
                 {
-                   // MainWindow main = new MainWindow(myUser);
-                   // main.Show();
+                   MainWindow main = new MainWindow(myUser);
+                    main.Show();
                     passwordBox.Text = "";
                     username1.Text = "";
                     Close();
