@@ -42,7 +42,6 @@ namespace DAL
             string start = DateTime.Today.ToString("yyyy-MM-dd").Replace('/','-');
             string end = DateTime.Today.AddDays(7).ToString("yyyy-MM-dd").Replace('/', '-');
             string URL = @"https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&start="+ start + "&end=" + end;
-            HolidayRoot h = null;
             using(var webClient = new System.Net.WebClient())
             {
                 var json = webClient.DownloadString(URL);
@@ -50,6 +49,7 @@ namespace DAL
                 
                 if (holidayRoot.items.Count > 0)
                 {
+                    holidayRoot.items.RemoveAll(i => i.subcat == "fast");
                     holidayRoot.items.Sort();
                     return holidayRoot.items.First().title;
                 }

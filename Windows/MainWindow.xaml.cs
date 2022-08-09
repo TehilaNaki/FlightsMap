@@ -1,6 +1,5 @@
 ﻿using BL;
 using BO;
-using FlightsMap.PO;
 using FlightsMap.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System;
@@ -15,7 +14,7 @@ namespace FlightsMap
     /// </summary>
     public partial class MainWindow : Window
     {
-        UserPO MyUser { get; set; }
+        User MyUser { get; set; }
         BLImp bl=new BLImp();
         public MainWindow()
         {

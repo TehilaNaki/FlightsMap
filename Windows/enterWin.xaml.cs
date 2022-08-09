@@ -1,5 +1,5 @@
 ﻿using BL;
-using FlightsMap.PO;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace FlightsMap
     /// </summary>
     public partial class enterWin : Window
     {
-        UserPO myUser = new UserPO { UserId = "tehila", Password = "11", Email = "11@" };
+        User myUser = new User { UserId = "tehila", Password = "11", Email = "11@" };
         BLImp bl = new BLImp();
 
         public enterWin()

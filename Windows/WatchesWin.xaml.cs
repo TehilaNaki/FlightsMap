@@ -1,6 +1,5 @@
 ﻿using BL;
 using BO;
-using FlightsMap.PO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,10 +22,10 @@ namespace FlightsMap.Windows
     /// </summary>
     public partial class WatchesWin : Window
     {
-        UserPO myUser;
+        User myUser;
         BLImp bl = new BLImp();
         ObservableCollection<Watch> watchList;
-        public WatchesWin(UserPO u)
+        public WatchesWin(User u)
         {
             InitializeComponent();
             myUser = u;
