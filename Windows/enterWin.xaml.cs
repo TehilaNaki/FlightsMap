@@ -27,7 +27,7 @@ namespace FlightsMap
         public enterWin()
         {
             InitializeComponent();
-            this.DataContext = myUser;
+          //  this.DataContext = myUser;
         }
 
         private void SignUpClick(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace FlightsMap
                 username1.Text = "";
                 Close();
             }
-                
+
         }
         private void EnterClick(object sender, RoutedEventArgs e)
         {

@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
         xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="FlightsMap.MainWindow"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:local="clr-namespace:FlightsMap.ViewModel" x:Class="FlightsMap.MainWindow"
+      
         Height="450" Width="870"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+    
     <Window.Resources>
         <ControlTemplate x:Key="pushpin_custom">
             <StackPanel ToolTipService.ToolTip="{Binding MapItem.Information}"  >
@@ -24,25 +26,21 @@
         <m:Map x:Name="myMap"   Background="White" Center="31,35" ZoomLevel="4" 
                Mode="Road"  CredentialsProvider="ldthgmBlL93BCM9rLBSM~eCbL9zZTc24E1ojrhTZTsA~AlCdRbfK5wq7Vi3wWaZ4KDljeV-oiXDPo4caheeT2-Kq4TL-XJqdQFHJZYbZey0t" Margin="10,0,5.6,-0.6" 
               Grid.Row="1">
-            <m:MapItemsControl ItemsSource="{Binding OcMapPoints}">
+            <m:MapItemsControl ItemsSource="{Binding Push}">
                 <m:MapItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <m:Pushpin Background="Red">
-                            <m:MapLayer.Position>
-                                <m:Location Latitude="{Binding Latitude}" Longitude="{Binding Longnitude}"/>
-                            </m:MapLayer.Position>
-                        </m:Pushpin>
+                        <m:Pushpin Location="{Binding Location}" Template="{StaticResource PushpinTemplate}" />
                     </DataTemplate>
                 </m:MapItemsControl.ItemTemplate>
             </m:MapItemsControl>
         </m:Map>
 
-            <Button x:Name="btnCreatePolygon" 
-                        HorizontalAlignment="Right" Click="WatchClick" Grid.Row="0">
+        <Button x:Name="btnCreatePolygon" 
+                HorizontalAlignment="Right" Command="{Binding watchCmd}" CommandParameter="{Binding MyUser}"  Grid.Row="0">
             <TextBlock x:Name="txtButton"><Run Text="View History"/></TextBlock>
         </Button>
         <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="holidayTitle"  HorizontalAlignment="Left" Height="60" Margin="331,10,0,0" VerticalAlignment="Top" Width="415" />
+        <Label Height="33" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,23,0,0" VerticalAlignment="Top" Width="415" Background="{x:Null}" FontWeight="Bold" FontSize="16" Foreground="#DD72CAF7"/>
     </Grid>
 
 </Window>

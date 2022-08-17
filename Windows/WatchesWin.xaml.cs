@@ -22,21 +22,17 @@ namespace FlightsMap.Windows
     /// </summary>
     public partial class WatchesWin : Window
     {
-        User myUser;
-        BLImp bl = new BLImp();
-        ObservableCollection<Watch> watchList;
-        public WatchesWin(User u)
+        
+        public WatchesWin()
         {
-            InitializeComponent();
-            myUser = u;
-            listView.ItemsSource= bl.GetUserWatches(myUser.UserId,DateTime.Today,DateTime.Now);
+            InitializeComponent();        
         }
 
         private void DateChangedEvent(object sender, RoutedEventArgs e)
         {
-            DateTime start = calender.SelectedDates.First();
-            DateTime end = calender.SelectedDates.Last().AddHours(23.99999);
-            listView.ItemsSource = bl.GetUserWatches(myUser.UserId,start,end);
+            //DateTime start = calender.SelectedDates.First();
+            //DateTime end = calender.SelectedDates.Last().AddHours(23.99999);
+            //listView.ItemsSource = bl.GetUserWatches(myUser.UserId,start,end);
         }
-        }
+    }
 }
