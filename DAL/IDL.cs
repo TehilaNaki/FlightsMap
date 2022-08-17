@@ -1,4 +1,5 @@
 ﻿using BO;
+using BO.Flights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace DAL
         List<Watch> GetUserWatches(string userName, DateTime start, DateTime end);
         string GetNextWeekHolidies();
        // List<Flight> GetAllFlights();
+
+        Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights();
     }
 }
