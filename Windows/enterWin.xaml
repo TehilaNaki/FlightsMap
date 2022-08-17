@@ -7,7 +7,9 @@
         mc:Ignorable="d"
          Height="450" Width="409.416" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Flights Center" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30"  Margin="106,0,0,0" Height="63" Width="308"/>
+       
+   <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="30"  FontWeight="bold" FontFamily="Gill Sans Ultra Bold"/>
+   
         <TabControl  Margin="0,49,0.2,0">
 
             <TabItem Header="Log in">

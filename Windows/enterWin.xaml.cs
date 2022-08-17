@@ -57,8 +57,8 @@ namespace FlightsMap
 
                 if (bl.ExistUser(new BO.User { UserId = myUser.UserId, Password = myUser.Password, Email = myUser.Email }))
                 {
-                   MainWindow main = new MainWindow(myUser);
-                    main.Show();
+                 //  MainWindow main = new MainWindow(myUser);
+                   // main.Show();
                     passwordBox.Text = "";
                     username1.Text = "";
                     Close();

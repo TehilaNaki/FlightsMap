@@ -21,6 +21,16 @@ namespace DAL
             }
            
         }
+
+        public void AddWatch(Watch w)
+        {
+            using (var db = new FlightContext())
+            {
+                db.Watches.Add(w);
+                db.SaveChanges();
+            }
+        }
+
         public void UpdatePassword(User u, string newPassword)
         {
             using (var ctx = new FlightContext())
@@ -71,7 +81,7 @@ namespace DAL
         {
             using (var db = new FlightContext())
             {
-               return (List<Watch>)db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start);
+               return db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start).ToList();
             }
         }
     }

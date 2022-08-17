@@ -16,7 +16,7 @@ namespace BL
 
         public void AddWatch(Watch w)
         {
-            throw new NotImplementedException();
+            dl.AddWatch(w);
         }
 
         public bool ExistUser(User u)
@@ -41,6 +41,9 @@ namespace BL
                 //new List<Watch> { new Watch { Destination = "Fdc", Origin = "rcd", Date = new DateTime(2022, 10, 21) } };
         }
 
-       
+        public List<Flight> getAllFlights()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

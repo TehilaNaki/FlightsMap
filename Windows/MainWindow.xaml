@@ -1,20 +1,21 @@
-﻿<Window x:Class="FlightsMap.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
-        Height="450" Width="750"
+        xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="FlightsMap.MainWindow"
+        Height="450" Width="870"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Window.Resources>
         <ControlTemplate x:Key="pushpin_custom">
-            <StackPanel ToolTipService.ToolTip="{Binding Path=MapItem.Information}"  >
+            <StackPanel ToolTipService.ToolTip="{Binding MapItem.Information}"  >
                 <Image  Source="airplane_take_off_48px.png"  />
-
             </StackPanel>
         </ControlTemplate>
     </Window.Resources>
-   
-        <Grid Background="White">
+
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
@@ -22,17 +23,26 @@
 
         <m:Map x:Name="myMap"   Background="White" Center="31,35" ZoomLevel="4" 
                Mode="Road"  CredentialsProvider="ldthgmBlL93BCM9rLBSM~eCbL9zZTc24E1ojrhTZTsA~AlCdRbfK5wq7Vi3wWaZ4KDljeV-oiXDPo4caheeT2-Kq4TL-XJqdQFHJZYbZey0t" Margin="10,0,5.6,-0.6" 
-              Grid.Row="1" >
+              Grid.Row="1">
+            <m:MapItemsControl ItemsSource="{Binding OcMapPoints}">
+                <m:MapItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <m:Pushpin Background="Red">
+                            <m:MapLayer.Position>
+                                <m:Location Latitude="{Binding Latitude}" Longitude="{Binding Longnitude}"/>
+                            </m:MapLayer.Position>
+                        </m:Pushpin>
+                    </DataTemplate>
+                </m:MapItemsControl.ItemTemplate>
+            </m:MapItemsControl>
         </m:Map>
-        <Button x:Name="btnCreatePolygon" 
+
+            <Button x:Name="btnCreatePolygon" 
                         HorizontalAlignment="Right" Click="WatchClick" Grid.Row="0">
-                <TextBlock x:Name="txtButton">My History</TextBlock>
-            </Button>
-        <Label Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35" FontWeight="bold" Margin="10,10,0,0"/>
-        <Label Name="holidayTitle" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="373" FontSize="23" FontWeight="bold" Height="40" Margin="251,24,0,0"/>
-   
-
-
+            <TextBlock x:Name="txtButton"><Run Text="View History"/></TextBlock>
+        </Button>
+        <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
+            <TextBox x:Name="holidayTitle"  HorizontalAlignment="Left" Height="60" Margin="331,10,0,0" VerticalAlignment="Top" Width="415" />
     </Grid>
-   
+
 </Window>
