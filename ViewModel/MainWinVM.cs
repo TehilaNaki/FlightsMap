@@ -75,20 +75,20 @@ namespace FlightsMap.ViewModel
           //  push.MouseDoubleClick += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
             Push.Add(push);
         }
-        //private void AddPushPineOut(FlightInfoPartial f)
-        //{
-        //    Pushpin p = new Pushpin();
-        //    p.Location = new Location(33, 32);
-        //    ControlTemplate template = (ControlTemplate)MW.FindResource("pushpin_customOut");
-        //    Pushpin push = new Pushpin
-        //    {
-        //        Location = new Location() { Latitude = f.Longtitude, Longitude = f.Latitude },
-        //        Template = template,
-        //        ToolTip = f.FlightNumber,
-        //    };
-        //    //  push.MouseDoubleClick += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
-        //    Push.Add(push);
-        //}
+        private void AddPushPineOut(FlightInfoPartial f)
+        {
+            Pushpin p = new Pushpin();
+            p.Location = new Location(33, 32);
+            ControlTemplate template = (ControlTemplate)MW.FindResource("pushpin_customOut");
+            Pushpin push = new Pushpin
+            {
+                Location = new Location() { Latitude = f.Lat, Longitude = f.Long },
+                Template = template,
+                ToolTip = f.FlightCode,
+            };
+            push.MouseDoubleClick += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
+            Push.Add(push);
+        }
         private void Refresh()
         {
             //ControlTemplate template = (ControlTemplate)MW.FindResource("pushpin_custom");            
@@ -100,10 +100,10 @@ namespace FlightsMap.ViewModel
             {
                 AddPushPineIn(flight);
             }
-            //foreach (var flight in f["Outcoming"])
-            //{
-            //    AddPushPineOut(flight);
-            //}
+            foreach (var flight in f["Outgoing"])
+            {
+                AddPushPineOut(flight);
+            }
         }
         private void ClockSign(int seconds)
         {
@@ -112,6 +112,10 @@ namespace FlightsMap.ViewModel
             timer.Interval = new TimeSpan(0, 0, seconds);
             timer.Start();
         }
-       
+        private void Push_MouseEnter(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
+        {
+              bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
+        }
+
     }
 }
