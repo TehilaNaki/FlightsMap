@@ -8,10 +8,10 @@
         Height="450" Width="870"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}">
-    
+
     <Window.Resources>
-        <ControlTemplate x:Key="pushpin_custom">
-            <StackPanel ToolTipService.ToolTip="{Binding MapItem.Information}"  >
+        <ControlTemplate x:Key="pushpin_customIn">
+            <StackPanel >
                 <Image  Source="airplane_take_off_48px.png"  />
             </StackPanel>
         </ControlTemplate>
@@ -26,21 +26,15 @@
         <m:Map x:Name="myMap"   Background="White" Center="31,35" ZoomLevel="4" 
                Mode="Road"  CredentialsProvider="ldthgmBlL93BCM9rLBSM~eCbL9zZTc24E1ojrhTZTsA~AlCdRbfK5wq7Vi3wWaZ4KDljeV-oiXDPo4caheeT2-Kq4TL-XJqdQFHJZYbZey0t" Margin="10,0,5.6,-0.6" 
               Grid.Row="1">
-            <m:MapItemsControl ItemsSource="{Binding Push}">
-                <m:MapItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <m:Pushpin Location="{Binding Location}" Template="{StaticResource PushpinTemplate}" />
-                    </DataTemplate>
-                </m:MapItemsControl.ItemTemplate>
-            </m:MapItemsControl>
+            <m:MapItemsControl x:Name="myPushpins" ItemsSource="{Binding Push}"/>
         </m:Map>
 
         <Button x:Name="btnCreatePolygon" 
-                HorizontalAlignment="Right" Command="{Binding watchCmd}" CommandParameter="{Binding MyUser}"  Grid.Row="0">
+                HorizontalAlignment="Right"  Command="{Binding watchCmd}" CommandParameter="{Binding MyUser}"  Grid.Row="0">
             <TextBlock x:Name="txtButton"><Run Text="View History"/></TextBlock>
         </Button>
         <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
-        <Label Height="33" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,23,0,0" VerticalAlignment="Top" Width="415" Background="{x:Null}" FontWeight="Bold" FontSize="16" Foreground="#DD72CAF7"/>
+        <Label Height="33" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,23,0,0" VerticalAlignment="Top" Width="415" Background="{x:Null}" FontWeight="Bold" FontSize="16" Foreground="#DD042097"/>
     </Grid>
 
 </Window>
