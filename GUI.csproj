@@ -208,7 +208,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +219,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons8_fighter_jet.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\Images\fighter_jet_128px.png" />
+    <Resource Include="Windows\Images\icons8_fighter_jet.ico" />
+    <Resource Include="Windows\Images\icons8_fighter_jet_16.png" />
+    <Resource Include="Windows\Images\icons8_fighter_jet_32.png" />
+    <Resource Include="Windows\location_48px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

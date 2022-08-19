@@ -45,6 +45,20 @@ namespace FlightsMap.ViewModel
                 OnPropertyChanged("Push");
             }
         }
+
+        private ObservableCollection<Pushpin> origin = new ObservableCollection<Pushpin>();
+        public ObservableCollection<Pushpin> Origin
+        {
+            get
+            {
+                return origin;
+            }
+            set
+            {
+                push = value;
+                OnPropertyChanged("Origin");
+            }
+        }
         public string TitleText
         {
             get
@@ -63,9 +77,7 @@ namespace FlightsMap.ViewModel
             }
         }
         private void AddPushPineIn(FlightInfoPartial f)
-        {
-            Pushpin p = new Pushpin();
-            p.Location = new Location(33, 32);
+        {          
             ControlTemplate template = (ControlTemplate)MW.FindResource("pushpin_customIn");
             Pushpin push = new Pushpin
             {
@@ -73,28 +85,24 @@ namespace FlightsMap.ViewModel
                 Template = template,
                 ToolTip = f.FlightCode,
             };
-           push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
-            Push.Add(push);
+           push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f));
+           Push.Add(push);
         }
         private void AddPushPineOut(FlightInfoPartial f)
         {
-            Pushpin p = new Pushpin();
-            p.Location = new Location(33, 32);
             ControlTemplate template = (ControlTemplate)MW.FindResource("pushpin_customOut");
             Pushpin push = new Pushpin
             {
                 Location = new Location() { Latitude = f.Lat, Longitude = f.Long },
                 Template = template,
                 ToolTip = f.FlightCode,
+
             };
-            push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
+            push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); 
             Push.Add(push);
         }
         private void Refresh()
         {
-            //ControlTemplate template = (ControlTemplate)MW.FindResource("pushpin_custom");            
-            // Push.Add(new Pushpin { Location = new Location(33, 32), ToolTip = "sss" ,Template=template});
-            //Push.Add(new Pushpin { Location = new Location(34, 32), ToolTip = "sg", Template = template });
             var f = bl.GetCurrentFlights();
             Push.Clear();
             foreach (var flight in f["Incoming"])
@@ -130,12 +138,7 @@ namespace FlightsMap.ViewModel
         }
         private void UpdateFlight(FlightInfoPartial selected)
         {
-            //TrafficAdapter dal = new TrafficAdapter();
             var Flight = bl.GetFlightDetail(selected.SourceId);
-
-            //DetailsPanel.DataContext = Flight;
-
-
 
             // Update map
             if (Flight != null)
@@ -147,23 +150,13 @@ namespace FlightsMap.ViewModel
                 addNewPolyLine(OrderedPlaces);
 
                 Trail CurrentPlace = null;
+                ControlTemplate template = (ControlTemplate)MW.FindResource("location");
+                Pushpin PinCurrent = new Pushpin { ToolTip = selected.FlightCode,Template=template };
+                Pushpin PinOrigin = new Pushpin { ToolTip = Flight.airport.origin.name, Template = template };
 
-                Pushpin PinCurrent = new Pushpin { ToolTip = selected.FlightCode };
-                Pushpin PinOrigin = new Pushpin { ToolTip = Flight.airport.origin.name };
-
-                PositionOrigin origin = new PositionOrigin { X = 0.1, Y = 0.1 };
+                PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };
                 MapLayer.SetPositionOrigin(PinCurrent, origin);
 
-
-                //Better to use RenderTransform
-                //if (Flight.airport.destination.code.iata == "TLV")
-                //{
-                //    PinCurrent.Style = (Style)Resources["ToIsrael"];
-                //}
-                //else
-                //{
-                //    PinCurrent.Style = (Style)Resources["FromIsrael"];
-                //}
 
                 CurrentPlace = OrderedPlaces.Last<Trail>();
                 var PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
@@ -173,28 +166,26 @@ namespace FlightsMap.ViewModel
                 CurrentPlace = OrderedPlaces.First<Trail>();
                 PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
                 PinOrigin.Location = PlaneLocation;
-
-                //PinCurrent.MouseDown += Pin_MouseDown;
-                Push.Add(PinOrigin);
-                Push.Add(PinCurrent);
-
+                Origin.Clear();
+                Origin.Add(PinOrigin);
+            
             }
         }
 
         void addNewPolyLine(List<Trail> Route)
         {
             MapPolyline polyline = new MapPolyline();
-           polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.BlueViolet);
+           polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Purple);
             polyline.StrokeThickness = 3;
-            //  polyline.Opacity = 0.7;
             polyline.StrokeDashOffset = 2;
             polyline.StrokeDashArray = new System.Windows.Media.DoubleCollection() { 4, 4 };
 
             polyline.Locations = new LocationCollection();
             foreach (var item in Route)
             {
-                polyline.Locations.Add(new Location(item.lat, item.lng,item.alt));
+                polyline.Locations.Add(new Location(item.lat, item.lng));
             }
+            MW.myMap.Children.RemoveRange(2, MW.myMap.Children.Count - 2);
             MW.myMap.Children.Add(polyline);
         }
 

@@ -20,6 +20,11 @@
                 <Image  Source="airplane_take_off_48px.png"  />
             </StackPanel>
         </ControlTemplate>
+        <ControlTemplate x:Key="location">
+            <StackPanel >
+                <Image  Source="location_48px.png"  />
+            </StackPanel>
+        </ControlTemplate>
     </Window.Resources>
 
     <Grid Background="White">
@@ -32,6 +37,7 @@
                Mode="Road"  CredentialsProvider="ldthgmBlL93BCM9rLBSM~eCbL9zZTc24E1ojrhTZTsA~AlCdRbfK5wq7Vi3wWaZ4KDljeV-oiXDPo4caheeT2-Kq4TL-XJqdQFHJZYbZey0t" Margin="10,0,5.6,-0.6" 
                Grid.Row="1" >
             <m:MapItemsControl x:Name="myPushpins" ItemsSource="{Binding Push}"/>
+            <m:MapItemsControl x:Name="origin" ItemsSource="{Binding Origin}"/>
         </m:Map>
 
         <Button x:Name="btnCreatePolygon" 
