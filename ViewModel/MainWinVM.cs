@@ -19,7 +19,7 @@ namespace FlightsMap.ViewModel
     {
 
        
-    public MainWinVM()
+        public MainWinVM()
         {
             ClockSign(3);
             watchCmd = new OpenWatchC();
@@ -187,7 +187,6 @@ namespace FlightsMap.ViewModel
             
             }
         }
-
         void addNewPolyLine(List<Trail> Route)
         {
             MapPolyline polyline = new MapPolyline();

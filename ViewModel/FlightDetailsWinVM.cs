@@ -24,16 +24,17 @@ namespace FlightsMap.ViewModel
             FlightPartial = fip;
             Flight = bl.GetFlightDetail(FlightPartial.SourceId);
         }
-
         public string FlightNumber
         {
             get
-            {               
+            {
+
                 var flightnum = Flight.identification.number.Default;
+                if (Flight.identification.number.alternative != "") 
+                    flightnum += " / " + Flight.identification.number.alternative;
                 return flightnum.ToString();
             }
         }
-
         public string AirlineCompany
         {
             get
@@ -42,7 +43,6 @@ namespace FlightsMap.ViewModel
                 return airline;
             }
         }
-
         public string Source
         {
             get
@@ -50,7 +50,6 @@ namespace FlightsMap.ViewModel
                 return FlightPartial.Source;
             }
         }
-
         public string Destination
         {
             get
@@ -58,7 +57,6 @@ namespace FlightsMap.ViewModel
                 return FlightPartial.Destination;
             }
         }
-
         public string SourceName
         {
             get
@@ -66,7 +64,6 @@ namespace FlightsMap.ViewModel
                 return Flight.airport.origin.name;
             }
         }
-
         public string DestinationName
         {
             get
@@ -74,42 +71,13 @@ namespace FlightsMap.ViewModel
                 return Flight.airport.destination.name;
             }
         }
-        public String SSource
-        {
-            get
-            {
-                return Flight.time.scheduled.departure.ToString();
-            }
-        }
-
-        public String SDest
-        {
-            get
-            {
-                return Flight.time.scheduled.arrival.ToString();
-            }
-        }
-        public String Act
-        {
-            get
-            {
-                if(Flight.time.real.departure!=null)
-                return Flight.time.real.departure.ToString();
-                return Flight.time.estimated.departure.ToString();
-            }
-        }
-
-        public String Est
-        {
-            get
-            {
-                if(Flight.time.estimated.arrival!=null)
-                return Flight.time.estimated.arrival.ToString();
-                return Flight.time.scheduled.arrival.ToString();
-
-
-            }
-        }
+        //public string StatusAirplane
+        //{
+        //    get
+        //    {
+        //        if(Flight.status.text == )
+        //    }
+        //}
 
     }
 }
