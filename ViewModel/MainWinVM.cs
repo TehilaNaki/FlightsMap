@@ -116,8 +116,12 @@ namespace FlightsMap.ViewModel
         private void Push_MouseEnter(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
         {
             bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
-            WinFlightDetails wfd = new WinFlightDetails(flight.SourceId);
-            wfd.Show();
+            FlightDetailsWinVM fdvm = new FlightDetailsWinVM();
+            fdvm.FlightPartial = flight;           
+            WinFlightDetails wfd = new WinFlightDetails();
+            fdvm.WFD= wfd;
+            fdvm.WFD.DataContext = fdvm;
+            fdvm.WFD.Show();
         }
 
     }

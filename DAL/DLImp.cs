@@ -111,7 +111,7 @@ namespace DAL
                             continue;
                         //if (item.Value[11].Type==JTokenType.Null)
                         //    continue;
-                        if ((string)item.Value[11].ToString() == "TLV")
+                        if (item.Value[11].ToString() == "TLV")
                             Outgoing.Add(new FlightInfoPartial
                             {
                                 Id = -1,
@@ -137,6 +137,8 @@ namespace DAL
                                 FlightCode = item.Value[13].ToString(),
                                 
                             });
+                        string hhh = (string)item.Value[11];
+
                         theitem = item;
                     }
                 }
@@ -152,7 +154,7 @@ namespace DAL
         }
         public FlightDetail GetFlightData(string key)
         {
-            var CurrentUrl = flightDetails + key;
+            string CurrentUrl =(string) flightDetails + key;
             FlightDetail currentFlight = null;
            
             using (var webClient = new System.Net.WebClient())
@@ -160,7 +162,7 @@ namespace DAL
                 var json = webClient.DownloadString(CurrentUrl);
                 try
                 {
-                    currentFlight = (FlightDetail)JsonConvert.DeserializeObject<FlightDetail>(json); 
+                    currentFlight = (FlightDetail)JsonConvert.DeserializeObject<FlightDetail>(json, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }); 
                 }catch (Exception e)
                 {
                     Debug.WriteLine(e.Message);
