@@ -2,6 +2,7 @@
 using BO;
 using BO.Flights;
 using FlightsMap.ViewModel.Commands;
+using FlightsMap.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
@@ -114,7 +115,9 @@ namespace FlightsMap.ViewModel
         }
         private void Push_MouseEnter(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
         {
-              bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
+            bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
+            WinFlightDetails wfd = new WinFlightDetails(flight.SourceId);
+            wfd.Show();
         }
 
     }

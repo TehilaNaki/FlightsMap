@@ -24,7 +24,8 @@ namespace FlightsMap
         public MainWindow()
         {
             InitializeComponent();
-           // AddPushPine(new Flight { Destination = "cf", FlightNumber = "H233", Latitude = 33, Longtitude = 32, Origin = "TLV" });
+            // AddPushPine(new Flight { Destination = "cf", FlightNumber = "H233", Latitude = 33, Longtitude = 32, Origin = "TLV" });
+            
         }
 
         //private void ClockSign(int seconds)

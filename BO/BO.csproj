@@ -87,12 +87,12 @@
     <Compile Include="Flights\Position.cs" />
     <Compile Include="Flights\Real.cs" />
     <Compile Include="Flights\Region.cs" />
-    <Compile Include="Flights\Root.cs" />
+    <Compile Include="Flights\FlightDetail.cs" />
     <Compile Include="Flights\Scheduled.cs" />
     <Compile Include="Flights\Status.cs" />
     <Compile Include="Flights\Time.cs" />
     <Compile Include="Flights\Timezone.cs" />
-    <Compile Include="Flights\ViewFlight.cs" />
+    <Compile Include="Flights\Trail.cs" />
     <Compile Include="Holiday.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

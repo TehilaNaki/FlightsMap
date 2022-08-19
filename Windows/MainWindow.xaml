@@ -35,7 +35,7 @@
         </m:Map>
 
         <Button x:Name="btnCreatePolygon" 
-                HorizontalAlignment="Right"  Command="{Binding watchCmd}" CommandParameter="{Binding MyUser}"  Grid.Row="0">
+                HorizontalAlignment="Right"  Command="{Binding watchCmd}" CommandParameter="{Binding MyUser}"  Grid.Row="0" Cursor="Hand">
             <TextBlock x:Name="txtButton"><Run Text="View History"/></TextBlock>
         </Button>
         <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
