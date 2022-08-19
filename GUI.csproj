@@ -227,6 +227,10 @@
     <Resource Include="Windows\Images\icons8_fighter_jet_32.png" />
     <Resource Include="Windows\location_48px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\airplane_landing_r100px.png" />
+    <Resource Include="Windows\airplane_take_off_r100px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
