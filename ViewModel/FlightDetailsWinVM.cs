@@ -24,17 +24,17 @@ namespace FlightsMap.ViewModel
             FlightPartial = fip;
             Flight = bl.GetFlightDetail(FlightPartial.SourceId);
         }
-
         public string FlightNumber
         {
             get
             {
-                
-                var flightnum = Flight.identification.number.Default + " / " + Flight.identification.number.alternative;
+
+                var flightnum = Flight.identification.number.Default;
+                if (Flight.identification.number.alternative != "") 
+                    flightnum += " / " + Flight.identification.number.alternative;
                 return flightnum.ToString();
             }
         }
-
         public string AirlineCompany
         {
             get
@@ -43,7 +43,6 @@ namespace FlightsMap.ViewModel
                 return airline;
             }
         }
-
         public string Source
         {
             get
@@ -51,7 +50,6 @@ namespace FlightsMap.ViewModel
                 return FlightPartial.Source;
             }
         }
-
         public string Destination
         {
             get
@@ -59,7 +57,6 @@ namespace FlightsMap.ViewModel
                 return FlightPartial.Destination;
             }
         }
-
         public string SourceName
         {
             get
@@ -67,7 +64,6 @@ namespace FlightsMap.ViewModel
                 return Flight.airport.origin.name;
             }
         }
-
         public string DestinationName
         {
             get
@@ -75,6 +71,13 @@ namespace FlightsMap.ViewModel
                 return Flight.airport.destination.name;
             }
         }
+        //public string StatusAirplane
+        //{
+        //    get
+        //    {
+        //        if(Flight.status.text == )
+        //    }
+        //}
 
     }
 }

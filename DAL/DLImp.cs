@@ -91,9 +91,7 @@ namespace DAL
 
             using (var webClient = new System.Net.WebClient())
             {
-                //async
-                //var json = RequestData(allURL); //download  data from url
-                //AllFlightsData = JObject.Parse(json.Result);
+                
 
                 //sync
                 HelperClass Helper = new HelperClass();
