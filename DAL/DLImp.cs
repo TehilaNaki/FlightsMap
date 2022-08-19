@@ -107,32 +107,35 @@ namespace DAL
                         var key = item.Key;
                         if (key == "full_count" || key == "version")
                             continue;
-                        if (item.Value[11].ToString() == "TLV")
-                            Outgoing.Add(new FlightInfoPartial
-                            {
-                                Id = -1,
-                                Source = item.Value[11].ToString(),
-                                Destination = item.Value[12].ToString(),
-                                SourceId = key,
-                                Long = Convert.ToDouble(item.Value[2]),
-                                Lat = Convert.ToDouble(item.Value[1]),
-                                DateAndTime = Helper.GetDateTimeFromEpoch(Convert.ToDouble(item.Value[10])),
-                                FlightCode = item.Value[13].ToString(),
-                                
-                            });
-                        else if (item.Value[12].ToString() == "TLV")
-                            Incoming.Add(new FlightInfoPartial
-                            {
-                                Id = -1,
-                                Source = item.Value[11].ToString(),
-                                Destination = item.Value[12].ToString(),
-                                SourceId = key,
-                                Long = Convert.ToDouble(item.Value[2]),
-                                Lat = Convert.ToDouble(item.Value[1]),
-                                DateAndTime = Helper.GetDateTimeFromEpoch(Convert.ToDouble(item.Value[10])),
-                                FlightCode = item.Value[13].ToString(),
+                        // if (item.Value[11].ToString() == "TLV
+                        if (item.Value.ToString().Contains("TLV"))
+                        Outgoing.Add(new FlightInfoPartial
+                        
+                        {
+                            Id = -1,
+                            Source = item.Value[11].ToString(),
+                            Destination = item.Value[12].ToString(),
+                            SourceId = key,
+                            Long = Convert.ToDouble(item.Value[2]),
+                            Lat = Convert.ToDouble(item.Value[1]),
+                            DateAndTime = Helper.GetDateTimeFromEpoch(Convert.ToDouble(item.Value[10])),
+                            FlightCode = item.Value[13].ToString(),
+
+                        });
+                            //);
+                        //else if (item.Value[12].ToString() == "TLV")
+                        //    Incoming.Add(new FlightInfoPartial
+                        //    {
+                        //        Id = -1,
+                        //        Source = item.Value[11].ToString(),
+                        //        Destination = item.Value[12].ToString(),
+                        //        SourceId = key,
+                        //        Long = Convert.ToDouble(item.Value[2]),
+                        //        Lat = Convert.ToDouble(item.Value[1]),
+                        //        DateAndTime = Helper.GetDateTimeFromEpoch(Convert.ToDouble(item.Value[10])),
+                        //        FlightCode = item.Value[13].ToString(),
                                
-                            });
+                        //    });
                     }
                 }
                 catch (Exception e)
@@ -248,7 +251,7 @@ namespace DAL
         {
             using (var db = new FlightContext())
             {
-               return db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start).ToList();
+               return db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start).Reverse().ToList();
             }
         }
     }

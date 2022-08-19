@@ -28,9 +28,8 @@ namespace FlightsMap.ViewModel
         public string FlightNumber
         {
             get
-            {
-                
-                var flightnum = Flight.identification.number.Default + " / " + Flight.identification.number.alternative;
+            {               
+                var flightnum = Flight.identification.number.Default;
                 return flightnum.ToString();
             }
         }
@@ -73,6 +72,42 @@ namespace FlightsMap.ViewModel
             get
             {
                 return Flight.airport.destination.name;
+            }
+        }
+        public String SSource
+        {
+            get
+            {
+                return Flight.time.scheduled.departure.ToString();
+            }
+        }
+
+        public String SDest
+        {
+            get
+            {
+                return Flight.time.scheduled.arrival.ToString();
+            }
+        }
+        public String Act
+        {
+            get
+            {
+                if(Flight.time.real.departure!=null)
+                return Flight.time.real.departure.ToString();
+                return Flight.time.estimated.departure.ToString();
+            }
+        }
+
+        public String Est
+        {
+            get
+            {
+                if(Flight.time.estimated.arrival!=null)
+                return Flight.time.estimated.arrival.ToString();
+                return Flight.time.scheduled.arrival.ToString();
+
+
             }
         }
 
