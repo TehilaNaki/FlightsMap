@@ -3,6 +3,7 @@
     public class Real
     {
         public int departure { get; set; }
-        public int arrival { get; set; }
+        public object arrival { get; set; }
+        //int
     }
 }
