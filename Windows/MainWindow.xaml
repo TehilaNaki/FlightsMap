@@ -12,17 +12,28 @@
     <Window.Resources>
         <ControlTemplate x:Key="pushpin_customIn">
             <StackPanel >
-                <Image  Source="airplane_landing_100px.png"  />
+                <Image  Source="airplane_take_off_48px.png"  />
+                
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="pushpin_customOut">
             <StackPanel >
-                <Image  Source="airplane_take_off_48px.png"  />
+                <Image  Source="airplane_landing_100px.png"  />
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="location">
             <StackPanel >
                 <Image  Source="location_48px.png"  />
+            </StackPanel>
+        </ControlTemplate>
+        <ControlTemplate x:Key="land">
+            <StackPanel >
+                <Image  Source="airplane_landing_r100px.png"  />
+            </StackPanel>
+        </ControlTemplate>
+        <ControlTemplate x:Key="takeoff">
+            <StackPanel >
+                <Image  Source="airplane_take_off_r100px.png"  />
             </StackPanel>
         </ControlTemplate>
     </Window.Resources>

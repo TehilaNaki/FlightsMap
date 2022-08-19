@@ -2,23 +2,19 @@
 using BO;
 using BO.Flights;
 using FlightsMap.ViewModel.Commands;
-using FlightsMap.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace FlightsMap.ViewModel
 {
-   public class MainWinVM: INotifyPropertyChanged
+    public class MainWinVM: INotifyPropertyChanged
     {
 
        
@@ -85,7 +81,7 @@ namespace FlightsMap.ViewModel
                 Template = template,
                 ToolTip = f.FlightCode,
             };
-           push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f));
+           push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnterIn(sender, e, f));
            Push.Add(push);
         }
         private void AddPushPineOut(FlightInfoPartial f)
@@ -98,7 +94,7 @@ namespace FlightsMap.ViewModel
                 ToolTip = f.FlightCode,
 
             };
-            push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); 
+            push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnterOut(sender, e, f)); 
             Push.Add(push);
         }
         private void Refresh()
@@ -121,10 +117,20 @@ namespace FlightsMap.ViewModel
             timer.Interval = new TimeSpan(0, 0, seconds);
             timer.Start();
         }
-        private void Push_MouseEnter(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
+        private void Push_MouseEnterOut(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
         {
-              bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
-          //  var p = (Pushpin)sender;
+            bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
+            var p = (Pushpin)sender;
+            ControlTemplate template = (ControlTemplate)MW.FindResource("land");
+            p.Template = template;
+            UpdateFlight(flight);
+        }
+        private void Push_MouseEnterIn(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
+        {
+            bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
+            var p = (Pushpin)sender;
+            ControlTemplate template = (ControlTemplate)MW.FindResource("takeoff");
+            p.Template = template;
             UpdateFlight(flight);
         }
         private void UpdateFlight(FlightInfoPartial selected)
