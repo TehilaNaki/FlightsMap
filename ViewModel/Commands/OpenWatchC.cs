@@ -26,7 +26,7 @@ namespace FlightsMap.ViewModel.Commands
         {
             User u = (User)parameter;
             WatchesWin w = new WatchesWin();
-            w.DataContext = new WatchWinVM(u);
+            w.DataContext = new WatchWinVM(u,w.calender);
             w.Show();
         }
     }

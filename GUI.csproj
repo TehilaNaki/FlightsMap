@@ -118,7 +118,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\CalenderWatchParameter.cs" />
     <Compile Include="ViewModel\Commands\DateChangeC.cs" />
     <Compile Include="ViewModel\Commands\LoginC.cs" />
     <Compile Include="ViewModel\Commands\OpenWatchC.cs" />

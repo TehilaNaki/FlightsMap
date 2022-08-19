@@ -8,33 +8,76 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace FlightsMap.ViewModel
 {
     public class WatchWinVM : INotifyPropertyChanged
     {
-        public WatchWinVM(User u)
+        public WatchWinVM(User u,Calendar c)
         {
             MyUser = u;
             dateChange = new DateChangeC(this);
+            calendar = c;
+            c.SelectedDatesChanged += DateChangedEvent;
+            if(c.SelectedDates.Count==0)
+            {
+                c.SelectedDates.Add(DateTime.Today);
+                c.SelectedDates.Add(DateTime.Now);
+            }
+            ClockSign(2);
         }
         
         public User MyUser { get; set; }
+        public Calendar calendar { get; set; }
         BLImp bl = new BLImp();
-        public List<Watch> WatchList
+        private ObservableCollection<Watch> watchList;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public ObservableCollection<Watch> WatchList
         {
             get
             {
-                return bl.GetUserWatches(MyUser.UserId, DateTime.Today, DateTime.Now);
+                return watchList;
             }
             set
             {
-                WatchList=value;
+              
+                watchList = value;
+                OnPropertyChanged("WatchList");
             }
         }
-        public ICommand dateChange;
-        public event PropertyChangedEventHandler PropertyChanged;
-        //public CalenderWatchParameter CalenderP { get { return new CalenderWatchParameter{calender= } set; }
+        public ICommand dateChange { get; set; }
+        private void DateChangedEvent(object sender, RoutedEventArgs e)
+        {
+            DateTime start = calendar.SelectedDates.First();
+            DateTime end = calendar.SelectedDates.Last().AddHours(23.99999);
+           WatchList= new ObservableCollection<Watch>(bl.GetUserWatches(MyUser.UserId, start, end));
+        }
+        private void DateChanged()
+        {
+            DateTime start = calendar.SelectedDates.First();
+            DateTime end = calendar.SelectedDates.Last().AddHours(23.99999);
+            WatchList = new ObservableCollection<Watch>(bl.GetUserWatches(MyUser.UserId, start, end));
+        }
+        private void ClockSign(int seconds)
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += (s, e) => DateChanged();
+            timer.Interval = new TimeSpan(0, 0, seconds);
+            timer.Start();
+        }
+
     }
 }
