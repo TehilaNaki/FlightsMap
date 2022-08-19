@@ -1,6 +1,8 @@
 ﻿using BL;
+using BO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +32,10 @@ namespace FlightsMap.ViewModel.Commands
         public void Execute(object parameter)
         {
             BLImp bl = new BLImp();
-            var p = (CalenderWatchParameter)parameter;
-            DateTime start = p.calender.SelectedDates.First();
-            DateTime end = p.calender.SelectedDates.Last().AddHours(23.99999);
-             vm.WatchList= bl.GetUserWatches(p.user.UserId, start, end);
+            var c = (Calendar)parameter;
+            DateTime start = c.SelectedDates.First();
+            DateTime end = c.SelectedDates.Last().AddHours(23.99999);
+            vm.WatchList = new ObservableCollection<Watch>(bl.GetUserWatches(vm.MyUser.UserId, start, end));
         }
     }
 }

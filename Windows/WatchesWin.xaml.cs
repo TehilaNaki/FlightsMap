@@ -28,11 +28,6 @@ namespace FlightsMap.Windows
             InitializeComponent();        
         }
 
-        private void DateChangedEvent(object sender, RoutedEventArgs e)
-        {
-            //DateTime start = calender.SelectedDates.First();
-            //DateTime end = calender.SelectedDates.Last().AddHours(23.99999);
-            //listView.ItemsSource = bl.GetUserWatches(myUser.UserId,start,end);
-        }
+       
     }
 }
