@@ -4,7 +4,7 @@ namespace BO
 {
     public class FlightDetail
     {
-        public Identification id { get; set; }
+        public Identification identification { get; set; }
         public Status status { get; set; }
         public string level { get; set; }
         public bool promote { get; set; }

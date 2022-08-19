@@ -97,21 +97,17 @@ namespace DAL
 
                 //sync
                 HelperClass Helper = new HelperClass();
- 
-                var json = webClient.DownloadString(allFlightsURL);
+
+                var json = RequestDataSync(allFlightsURL);
                 AllFlightsData = JObject.Parse(json);
-                KeyValuePair<string,JToken> theitem;
                 try
                 {
                     foreach (var item in AllFlightsData)
                     {
-                        
                         var key = item.Key;
                         if (key == "full_count" || key == "version")
                             continue;
-                        //if (item.Value[11].Type==JTokenType.Null)
-                        //    continue;
-                        if ((string)item.Value[11].ToString() == "TLV")
+                        if (item.Value[11].ToString() == "TLV")
                             Outgoing.Add(new FlightInfoPartial
                             {
                                 Id = -1,
@@ -124,7 +120,7 @@ namespace DAL
                                 FlightCode = item.Value[13].ToString(),
                                 
                             });
-                        else if ((string)item.Value[12].ToString() == "TLV")
+                        else if (item.Value[12].ToString() == "TLV")
                             Incoming.Add(new FlightInfoPartial
                             {
                                 Id = -1,
@@ -135,9 +131,8 @@ namespace DAL
                                 Lat = Convert.ToDouble(item.Value[1]),
                                 DateAndTime = Helper.GetDateTimeFromEpoch(Convert.ToDouble(item.Value[10])),
                                 FlightCode = item.Value[13].ToString(),
-                                
+                               
                             });
-                        theitem = item;
                     }
                 }
                 catch (Exception e)
@@ -150,9 +145,18 @@ namespace DAL
             }
             return flightsDictionary;
         }
+
+        private string RequestDataSync(string url)
+        {
+            using (var webClient = new System.Net.WebClient())
+            {
+                return webClient.DownloadString(url);
+            }
+        }
+
         public FlightDetail GetFlightData(string key)
         {
-            var CurrentUrl = flightDetails + key;
+            string CurrentUrl =(string) flightDetails + key;
             FlightDetail currentFlight = null;
            
             using (var webClient = new System.Net.WebClient())
@@ -160,7 +164,7 @@ namespace DAL
                 var json = webClient.DownloadString(CurrentUrl);
                 try
                 {
-                    currentFlight = (FlightDetail)JsonConvert.DeserializeObject<FlightDetail>(json); 
+                    currentFlight = (FlightDetail)JsonConvert.DeserializeObject<FlightDetail>(json, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }); 
                 }catch (Exception e)
                 {
                     Debug.WriteLine(e.Message);

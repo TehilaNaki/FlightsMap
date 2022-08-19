@@ -132,6 +132,15 @@ namespace FlightsMap.ViewModel
             ControlTemplate template = (ControlTemplate)MW.FindResource("takeoff");
             p.Template = template;
             UpdateFlight(flight);
+            var p = (Pushpin)sender;
+
+            // open details window
+            FlightDetailsWinVM fdvm = new FlightDetailsWinVM(flight);
+            //fdvm.FlightPartial = flight;
+            WinFlightDetails wfd = new WinFlightDetails();
+            fdvm.WFD = wfd;
+            fdvm.WFD.DataContext = fdvm;
+            fdvm.WFD.Show();
         }
         private void UpdateFlight(FlightInfoPartial selected)
         {

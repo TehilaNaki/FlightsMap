@@ -49,7 +49,7 @@ public class Model
 
 public class Number
 {
-    public string @default { get; set; }
+    public string Default { get; set; }
     public object alternative { get; set; }
 }
 

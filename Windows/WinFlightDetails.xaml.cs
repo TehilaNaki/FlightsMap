@@ -1,6 +1,4 @@
-﻿using BL;
-using BO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,12 +19,9 @@ namespace FlightsMap.Windows
     /// </summary>
     public partial class WinFlightDetails : Window
     {
-        BLImp bl = new BLImp();
-        FlightDetail _curFlight;
-        public WinFlightDetails(string flightId)
+        public WinFlightDetails()
         {
             InitializeComponent();
-            this._curFlight=bl.GetFlightDetail(flightId);
 
         }
 
