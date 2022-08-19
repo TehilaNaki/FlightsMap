@@ -18,5 +18,7 @@ namespace DAL
        // List<Flight> GetAllFlights();
 
         Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights();
+        FlightDetail GetFlightData(string key);
+
     }
 }

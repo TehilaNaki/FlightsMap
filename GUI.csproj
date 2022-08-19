@@ -45,6 +45,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Json.Net, Version=1.0.33.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Json.Net.1.0.33\lib\netstandard2.0\Json.Net.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.6.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.2.0.6\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -74,6 +77,9 @@
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -123,10 +129,14 @@
     <Compile Include="ViewModel\Commands\OpenWatchC.cs" />
     <Compile Include="ViewModel\Commands\SignUpC.cs" />
     <Compile Include="ViewModel\EnterWinVM.cs" />
+    <Compile Include="ViewModel\FlightDetailsWinVM.cs" />
     <Compile Include="ViewModel\MainWinVM.cs" />
     <Compile Include="ViewModel\WatchWinVM.cs" />
     <Compile Include="Windows\WatchesWin.xaml.cs">
       <DependentUpon>WatchesWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinFlightDetails.xaml.cs">
+      <DependentUpon>WinFlightDetails.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\enterWin.xaml">
       <SubType>Designer</SubType>
@@ -148,6 +158,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\WatchesWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinFlightDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,6 +15,7 @@ namespace BL
         string GetNextWeekHolidies();
 
         Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights();
+        FlightDetail GetFlightDetail(string partialFlightID);
 
 
     }

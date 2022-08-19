@@ -2,6 +2,7 @@
 using BO;
 using BO.Flights;
 using FlightsMap.ViewModel.Commands;
+using FlightsMap.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;

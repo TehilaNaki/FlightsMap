@@ -17,7 +17,7 @@
             <TabItem Header="Log in">
                 <Grid >
                     <TextBox x:Name="username" HorizontalAlignment="Left" Height="33" Margin="168,75,0,0"  VerticalAlignment="Top" Width="136" MaxLength="12" Text = "{Binding Path=MyUserL.UserId, Mode=OneWayToSource}"/>
-                    <TextBox x:Name="password" HorizontalAlignment="Left" Height="33" Margin="168,135,0,0" VerticalAlignment="Top" Width="136" MaxLength="10" Text = "{Binding MyUserL.Password, Mode=TwoWay}"/>
+                    <TextBox x:Name="password" HorizontalAlignment="Left" Height="33" Margin="168,135,0,0" VerticalAlignment="Top" Width="136" MaxLength="10" Text = "{Binding MyUserL.Password, Mode=TwoWay}" Cursor="Arrow"/>
 
                     <Label Content="User name" HorizontalAlignment="Left" Height="33" Margin="31,75,0,0" VerticalAlignment="Top" Width="102" FontWeight="Bold" FontSize="16"/>
                     <Label Content="Password" HorizontalAlignment="Left" Height="33" Margin="31,135,0,0" VerticalAlignment="Top" Width="102" FontWeight="Bold" FontSize="16"/>

@@ -49,12 +49,14 @@ namespace BL
         {
            return dl.GetCurrentFlights();
         }
+
+        public FlightDetail GetFlightDetail(string partialFlightID)
+        {
+            return dl.GetFlightData(partialFlightID);
+        }
         #endregion
 
-        public List<Flight> getAllFlights()
-        {
-            throw new NotImplementedException();
-        }
+       
 
     }
 }

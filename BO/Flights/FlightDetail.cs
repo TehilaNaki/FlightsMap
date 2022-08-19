@@ -2,9 +2,9 @@
 
 namespace BO
 {
-    public class Root
+    public class FlightDetail
     {
-        public Identification identification { get; set; }
+        public Identification id { get; set; }
         public Status status { get; set; }
         public string level { get; set; }
         public bool promote { get; set; }
