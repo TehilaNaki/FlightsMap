@@ -24,7 +24,7 @@ namespace FlightsMap.ViewModel
        
     public MainWinVM()
         {
-            ClockSign(10);
+            ClockSign(3);
             watchCmd = new OpenWatchC();
            
         }
@@ -73,7 +73,7 @@ namespace FlightsMap.ViewModel
                 Template = template,
                 ToolTip = f.FlightCode,
             };
-          //  push.MouseDoubleClick += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
+           push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
             Push.Add(push);
         }
         private void AddPushPineOut(FlightInfoPartial f)
@@ -87,7 +87,7 @@ namespace FlightsMap.ViewModel
                 Template = template,
                 ToolTip = f.FlightCode,
             };
-            push.MouseDoubleClick += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
+            push.MouseDown += new MouseButtonEventHandler((sender, e) => Push_MouseEnter(sender, e, f)); ;
             Push.Add(push);
         }
         private void Refresh()
@@ -116,6 +116,8 @@ namespace FlightsMap.ViewModel
         private void Push_MouseEnter(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
         {
               bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
+          //  var p = (Pushpin)sender;
+            UpdateFlight(flight);
             var p = (Pushpin)sender;
 
             // open details window
@@ -149,7 +151,7 @@ namespace FlightsMap.ViewModel
                 Pushpin PinCurrent = new Pushpin { ToolTip = selected.FlightCode };
                 Pushpin PinOrigin = new Pushpin { ToolTip = Flight.airport.origin.name };
 
-                PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };
+                PositionOrigin origin = new PositionOrigin { X = 0.1, Y = 0.1 };
                 MapLayer.SetPositionOrigin(PinCurrent, origin);
 
 
@@ -173,9 +175,6 @@ namespace FlightsMap.ViewModel
                 PinOrigin.Location = PlaneLocation;
 
                 //PinCurrent.MouseDown += Pin_MouseDown;
-
-                //myMap.Children.Add(PinOrigin);
-                //myMap.Children.Add(PinCurrent);
                 Push.Add(PinOrigin);
                 Push.Add(PinCurrent);
 
@@ -185,18 +184,18 @@ namespace FlightsMap.ViewModel
         void addNewPolyLine(List<Trail> Route)
         {
             MapPolyline polyline = new MapPolyline();
-            polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.BlueViolet);
-            polyline.StrokeThickness = 1;
-            polyline.Opacity = 0.7;
+           polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.BlueViolet);
+            polyline.StrokeThickness = 3;
+            //  polyline.Opacity = 0.7;
+            polyline.StrokeDashOffset = 2;
+            polyline.StrokeDashArray = new System.Windows.Media.DoubleCollection() { 4, 4 };
+
             polyline.Locations = new LocationCollection();
             foreach (var item in Route)
             {
-                polyline.Locations.Add(new Location(item.lat, item.lng));
+                polyline.Locations.Add(new Location(item.lat, item.lng,item.alt));
             }
-
-            //myMap.Children.Clear();
-            //myMap.Children.Add(polyline);
-            
+            MW.myMap.Children.Add(polyline);
         }
 
     }

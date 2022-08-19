@@ -26,7 +26,7 @@ namespace FlightsMap.ViewModel
             if(c.SelectedDates.Count==0)
             {
                 c.SelectedDates.Add(DateTime.Today);
-                c.SelectedDates.Add(DateTime.Now);
+             //   c.SelectedDates.Add(DateTime.Now);
             }
             ClockSign(2);
         }

@@ -24,13 +24,13 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <m:Map x:Name="myMap"   Background="White" Center="31,35" ZoomLevel="4" 
                Mode="Road"  CredentialsProvider="ldthgmBlL93BCM9rLBSM~eCbL9zZTc24E1ojrhTZTsA~AlCdRbfK5wq7Vi3wWaZ4KDljeV-oiXDPo4caheeT2-Kq4TL-XJqdQFHJZYbZey0t" Margin="10,0,5.6,-0.6" 
-              Grid.Row="1">
+               Grid.Row="1" >
             <m:MapItemsControl x:Name="myPushpins" ItemsSource="{Binding Push}"/>
         </m:Map>
 
@@ -38,8 +38,8 @@
                 HorizontalAlignment="Right"  Command="{Binding watchCmd}" CommandParameter="{Binding MyUser}"  Grid.Row="0" Cursor="Hand">
             <TextBlock x:Name="txtButton"><Run Text="View History"/></TextBlock>
         </Button>
-        <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
-        <Label Height="33" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,23,0,0" VerticalAlignment="Top" Width="415" Background="{x:Null}" FontWeight="Bold" FontSize="16" Foreground="#DD042097"/>
+        <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  Grid.Row="0" FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
+        <Label Height="33" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,23,0,0" VerticalAlignment="Top" Width="415" Grid.Row="0" FontFamily="Gill Sans Ultra Bold" FontSize="13" Foreground="#DD042097"/>
     </Grid>
 
 </Window>

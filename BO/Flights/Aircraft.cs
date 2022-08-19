@@ -12,7 +12,7 @@ namespace BO
         public int countryId { get; set; }
         public string registration { get; set; }
         public string hex { get; set; }
-        public float? age { get; set; }
+        public object age { get; set; }
         public object msn { get; set; }
         public Images images { get; set; }
         public Identification identification { get; set; }
