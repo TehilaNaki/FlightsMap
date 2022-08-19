@@ -117,11 +117,19 @@ namespace FlightsMap.ViewModel
         {
               bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
             var p = (Pushpin)sender;
+
+            // open details window
+            FlightDetailsWinVM fdvm = new FlightDetailsWinVM(flight);
+            //fdvm.FlightPartial = flight;
+            WinFlightDetails wfd = new WinFlightDetails();
+            fdvm.WFD = wfd;
+            fdvm.WFD.DataContext = fdvm;
+            fdvm.WFD.Show();
         }
         private void UpdateFlight(FlightInfoPartial selected)
         {
             //TrafficAdapter dal = new TrafficAdapter();
-            var Flight = bl.GetFlightData(selected.SourceId);
+            var Flight = bl.GetFlightDetail(selected.SourceId);
 
             //DetailsPanel.DataContext = Flight;
 
@@ -188,13 +196,7 @@ namespace FlightsMap.ViewModel
 
             //myMap.Children.Clear();
             //myMap.Children.Add(polyline);
-            bl.AddWatch(new Watch { Date = DateTime.Now, Destination = flight.Destination, FlightNumber = flight.FlightCode, Origin = flight.Source, UserName = MyUser.UserId });
-            FlightDetailsWinVM fdvm = new FlightDetailsWinVM();
-            fdvm.FlightPartial = flight;           
-            WinFlightDetails wfd = new WinFlightDetails();
-            fdvm.WFD= wfd;
-            fdvm.WFD.DataContext = fdvm;
-            fdvm.WFD.Show();
+            
         }
 
     }

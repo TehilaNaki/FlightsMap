@@ -17,10 +17,11 @@ namespace FlightsMap.ViewModel
         BLImp bl = new BLImp();
 
         public FlightInfoPartial FlightPartial { get; set; }
-        public FlightDetail Flight;
+        public FlightDetail Flight { get; set; }
 
-        public FlightDetailsWinVM()
+        public FlightDetailsWinVM(FlightInfoPartial fip)
         {
+            FlightPartial = fip;
             Flight = bl.GetFlightDetail(FlightPartial.SourceId);
         }
 
