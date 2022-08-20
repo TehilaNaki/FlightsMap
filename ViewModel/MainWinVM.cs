@@ -2,6 +2,7 @@
 using BO;
 using BO.Flights;
 using FlightsMap.ViewModel.Commands;
+using FlightsMap.Windows;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
@@ -132,7 +133,6 @@ namespace FlightsMap.ViewModel
             ControlTemplate template = (ControlTemplate)MW.FindResource("takeoff");
             p.Template = template;
             UpdateFlight(flight);
-            var p = (Pushpin)sender;
 
             // open details window
             FlightDetailsWinVM fdvm = new FlightDetailsWinVM(flight);

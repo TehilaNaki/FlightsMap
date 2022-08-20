@@ -232,6 +232,41 @@ namespace DAL
             }
         }
 
+        public Dictionary<string,string> GetCurrentWeather(string lon, string lat)
+        {
+            Dictionary<string,string> result = new Dictionary<string,string>();
+
+            string URL = @"https://openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=metric&appid=439d4b804bc8187953eb36d2a8c26a02";
+            using (var webClient = new System.Net.WebClient())
+            {
+                var json = webClient.DownloadString(URL);
+                WeatherRoot weatherRoot = JsonConvert.DeserializeObject<WeatherRoot>(json);
+                string temperature = weatherRoot.current.temp.ToString();
+                string mainWeather = weatherRoot.current.weather.First().main;
+                string shortDesc = weatherRoot.current.weather.First().description;
+
+                result.Add("temperature", temperature);
+                result.Add("mainWeather", mainWeather);
+                result.Add("shortDesc", shortDesc);
+                     
+            }
+            return result;
+        }
+
+        public Dictionary<string,string> GetLonLatOrigin(FlightDetail flight)
+        {
+            string lon = flight.airport.origin.position.longitude.ToString();
+            string lat = flight.airport.origin.position.latitude.ToString();
+            return new Dictionary<string, string>() { { "lon", lon }, { "lat", lat } };
+        }
+
+        public Dictionary<string, string> GetLonLatDestination(FlightDetail flight)
+        {
+            string lon = flight.airport.destination.position.longitude.ToString();
+            string lat = flight.airport.destination.position.latitude.ToString();
+            return new Dictionary<string, string>() { { "lon", lon }, { "lat", lat } };
+        }
+
         public bool ExistUser(User u)
         {
             using (var ctx = new FlightContext())

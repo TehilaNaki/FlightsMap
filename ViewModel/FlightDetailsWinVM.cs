@@ -79,5 +79,15 @@ namespace FlightsMap.ViewModel
         //    }
         //}
 
+        public string Weather
+        {
+            get
+            {
+                var result = bl.GetWeather(Flight, FlightPartial);
+
+                return "coucou";
+            }
+        }
+
     }
 }
