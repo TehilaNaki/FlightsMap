@@ -176,9 +176,7 @@ namespace DAL
             return currentFlight;   
         }
             
-
-
-        
+    
         #endregion
         public void AddUser(User u)
         {
@@ -249,7 +247,9 @@ namespace DAL
         {
             using (var db = new FlightContext())
             {
-               return db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start).Reverse().ToList();
+               var l=(db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start)).ToList();
+                l.Reverse();
+                return l;
             }
         }
     }

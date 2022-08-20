@@ -30,7 +30,7 @@ namespace FlightsMap.ViewModel
             {
 
                 var flightnum = Flight.identification.number.Default;
-                if (Flight.identification.number.alternative != "") 
+                if (Flight.identification.number.alternative != null) 
                     flightnum += " / " + Flight.identification.number.alternative;
                 return flightnum.ToString();
             }
@@ -71,13 +71,85 @@ namespace FlightsMap.ViewModel
                 return Flight.airport.destination.name;
             }
         }
-        //public string StatusAirplane
-        //{
-        //    get
-        //    {
-        //        if(Flight.status.text == )
-        //    }
-        //}
+        public string SDest
+        {
+            get
+            {
+                return Flight.time.scheduled.arrival.ToString();
+            }
+        }
+        public string SSource
+        {
+            get
+            {
+                return Flight.time.scheduled.departure.ToString();
+            }
+        }
+        public string Act
+        {
+            get
+            {
+                if(Flight.time.real.departure!=null)
+                return Flight.time.real.departure.ToString();
+                return Flight.time.estimated.departure.ToString();
+            }
+        }
+        public string Est
+        {
+            get
+            {
+                if(Flight.time.estimated.arrival!=null)
+                return Flight.time.estimated.arrival.ToString();
+                return Flight.time.scheduled.arrival.ToString();
+            }
+        }
+        public string StatusAirplane
+        {
+            get
+            {
+                switch(Flight.status.generic.status.text)
+                {
+                    case "scheduled":
+                        return "scheduled.png";
+                    case "landed":
+                        return "land.png";
+                    case "estimated":
+                        return "estimated.png";
+                    case "delayed":
+                        return "delayed.png";
 
+                }
+                return "takeoff.png";
+            }
+        }
+        public string FlightStatus
+        {
+            get
+            {
+                return Flight.status.text;
+            }
+        }
+
+        public string Stime
+        {
+            get
+            {
+                return Flight.status.generic.eventTime.utc.ToString();
+            }
+        }
+        public string Dtime
+        {
+            get
+            {
+                return Flight.status.generic.eventTime.local.ToString();
+            }
+        }
+        public int PBvalue
+        {
+            get
+            {
+                return 10;
+            }
+        }
     }
 }

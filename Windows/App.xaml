@@ -5,11 +5,13 @@
              xmlns:materialDesign1="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="enterWin.xaml">
     <Application.Resources>
+
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign1:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+       
     </Application.Resources>
 </Application>

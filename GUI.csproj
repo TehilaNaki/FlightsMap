@@ -231,6 +231,13 @@
     <Resource Include="Windows\airplane_landing_r100px.png" />
     <Resource Include="Windows\airplane_take_off_r100px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\delayed.png" />
+    <Resource Include="Windows\estimated.png" />
+    <Resource Include="Windows\land.png" />
+    <Resource Include="Windows\scheduled.png" />
+    <Resource Include="Windows\takaoff.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

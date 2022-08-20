@@ -5,15 +5,15 @@
         xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:local="clr-namespace:FlightsMap.ViewModel" x:Class="FlightsMap.MainWindow"
       
-        Height="450" Width="870"
+        Height="600" Width="1005"
         Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" Left="0">
 
     <Window.Resources>
         <ControlTemplate x:Key="pushpin_customIn">
             <StackPanel >
                 <Image  Source="airplane_take_off_48px.png"  />
-                
+
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="pushpin_customOut">
@@ -56,7 +56,7 @@
             <TextBlock x:Name="txtButton"><Run Text="View History"/></TextBlock>
         </Button>
         <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  Grid.Row="0" FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
-        <Label Height="33" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,23,0,0" VerticalAlignment="Top" Width="415" Grid.Row="0" FontFamily="Gill Sans Ultra Bold" FontSize="13" Foreground="#DD042097"/>
+        <Label Height="41" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,19,0,10" VerticalAlignment="Center" Width="560" Grid.Row="0" FontFamily="Arial Rounded MT Bold" FontSize="22" Foreground="#DD461FAB" FontWeight="Bold"/>
     </Grid>
 
 </Window>
