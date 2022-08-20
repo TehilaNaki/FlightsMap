@@ -20,5 +20,9 @@ namespace DAL
         Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights();
         FlightDetail GetFlightData(string key);
 
+        Dictionary<string, string> GetCurrentWeather(string lon, string lat);
+        Dictionary<string, string> GetLonLatOrigin(FlightDetail flight);
+        Dictionary<string, string> GetLonLatDestination(FlightDetail flight);
+
     }
 }

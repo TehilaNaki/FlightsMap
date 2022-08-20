@@ -141,6 +141,7 @@ namespace FlightsMap.ViewModel
             p.Template = template;
             UpdateFlight(flight);
           
+
             // open details window
             FlightDetailsWinVM fdvm = new FlightDetailsWinVM(flight);
             //fdvm.FlightPartial = flight;

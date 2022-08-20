@@ -54,9 +54,25 @@ namespace BL
         {
             return dl.GetFlightData(partialFlightID);
         }
+
+        public Dictionary<string, Dictionary<string, string>> GetWeather(FlightDetail flight ,FlightInfoPartial fip)
+        {
+           
+            Dictionary<string, Dictionary<string, string>> result = new Dictionary<string, Dictionary<string, string>>();
+
+            Dictionary<string, string> currentW = dl.GetCurrentWeather(fip.Long.ToString(), fip.Lat.ToString());
+            Dictionary<string, string> originW = dl.GetCurrentWeather(dl.GetLonLatOrigin(flight)["lon"], dl.GetLonLatOrigin(flight)["lat"]);
+            Dictionary<string, string> destinationW = dl.GetCurrentWeather(dl.GetLonLatDestination(flight)["lon"], dl.GetLonLatDestination(flight)["lat"]);
+
+            result.Add("current", currentW);
+            result.Add("origin", originW);
+            result.Add("destination", destinationW);
+
+            return result;
+        }
         #endregion
 
-       
+
 
     }
 }

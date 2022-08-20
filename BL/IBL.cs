@@ -17,6 +17,6 @@ namespace BL
         Dictionary<string, List<FlightInfoPartial>> GetCurrentFlights();
         FlightDetail GetFlightDetail(string partialFlightID);
 
-
+        Dictionary<string, Dictionary<string, string>> GetWeather(FlightDetail flight, FlightInfoPartial fip);
     }
 }
