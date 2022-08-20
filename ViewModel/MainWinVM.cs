@@ -125,6 +125,13 @@ namespace FlightsMap.ViewModel
             ControlTemplate template = (ControlTemplate)MW.FindResource("land");
             p.Template = template;
             UpdateFlight(flight);
+            // open details window
+            FlightDetailsWinVM fdvm = new FlightDetailsWinVM(flight);
+            //fdvm.FlightPartial = flight;
+            WinFlightDetails wfd = new WinFlightDetails();
+            fdvm.WFD = wfd;
+            fdvm.WFD.DataContext = fdvm;
+            fdvm.WFD.Show();
         }
         private void Push_MouseEnterIn(object sender, MouseButtonEventArgs e, FlightInfoPartial flight)
         {
@@ -133,6 +140,7 @@ namespace FlightsMap.ViewModel
             ControlTemplate template = (ControlTemplate)MW.FindResource("takeoff");
             p.Template = template;
             UpdateFlight(flight);
+          
 
             // open details window
             FlightDetailsWinVM fdvm = new FlightDetailsWinVM(flight);
@@ -158,22 +166,25 @@ namespace FlightsMap.ViewModel
                 Trail CurrentPlace = null;
                 ControlTemplate template = (ControlTemplate)MW.FindResource("location");
                 Pushpin PinCurrent = new Pushpin { ToolTip = selected.FlightCode,Template=template };
-                Pushpin PinOrigin = new Pushpin { ToolTip = Flight.airport.origin.name, Template = template };
+                if (Flight.airport.origin != null)
+                {
+                    Pushpin PinOrigin = new Pushpin { ToolTip = Flight.airport.origin.name, Template = template };
 
-                PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };
-                MapLayer.SetPositionOrigin(PinCurrent, origin);
-
-
-                CurrentPlace = OrderedPlaces.Last<Trail>();
-                var PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
-                PinCurrent.Location = PlaneLocation;
+                    PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };
+                    MapLayer.SetPositionOrigin(PinCurrent, origin);
 
 
-                CurrentPlace = OrderedPlaces.First<Trail>();
-                PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
-                PinOrigin.Location = PlaneLocation;
-                Origin.Clear();
-                Origin.Add(PinOrigin);
+                    CurrentPlace = OrderedPlaces.Last<Trail>();
+                    var PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
+                    PinCurrent.Location = PlaneLocation;
+
+
+                    CurrentPlace = OrderedPlaces.First<Trail>();
+                    PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
+                    PinOrigin.Location = PlaneLocation;
+                    Origin.Clear();
+                    Origin.Add(PinOrigin);
+                }
             
             }
         }
