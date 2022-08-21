@@ -170,6 +170,13 @@ namespace FlightsMap.ViewModel
                 return 10;
             }
         }
+        public string PBStatus
+        {
+            get
+            {
+                return "10% of the flight";
+            }
+        }
 
         public string WeatherOrigin
         {
@@ -183,7 +190,7 @@ namespace FlightsMap.ViewModel
 
                 // For example, to have the temperature of the destination 
                 // it is :
-                return result["origin"]["shortDesc"].ToUpper() + " "+result["origin"]["temperature"] +" Celsius ";
+                return result["origin"]["shortDesc"].ToUpper() + " "+result["origin"]["temperature"] + " C°";
             }
         }
         public string WeatherDest
@@ -191,7 +198,7 @@ namespace FlightsMap.ViewModel
             get
             {
                 var result = bl.GetWeather(Flight, FlightPartial);
-                return result["destination"]["shortDesc"].ToUpper() + " "+result["destination"]["temperature"] + " Celsius " ;
+                return result["destination"]["shortDesc"].ToUpper() + " "+result["destination"]["temperature"] + " C°";
             }
         }
         public string WeatherCurrent
@@ -199,7 +206,7 @@ namespace FlightsMap.ViewModel
             get
             {
                 var result = bl.GetWeather(Flight, FlightPartial);
-                return result["current"]["shortDesc"].ToUpper() + " "+result["current"]["temperature"]+ " Celsius " ;
+                return result["current"]["shortDesc"].ToUpper() + " "+result["current"]["temperature"]+ " C°";
             }
         }
 
