@@ -78,7 +78,7 @@ namespace FlightsMap.ViewModel
             get
             {
                 if (Flight.time.scheduled.arrival != 0)
-                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm");
+                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm") + " UTC";
                 else
                     return "N/A";
             }
@@ -88,7 +88,7 @@ namespace FlightsMap.ViewModel
             get
             {
                 if (Flight.time.scheduled.departure != 0)
-                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.departure).ToString("HH:mm");
+                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.departure).ToString("HH:mm") + " UTC";
                 else
                     return "N/A";
             }
@@ -98,9 +98,9 @@ namespace FlightsMap.ViewModel
             get
             {
                 if (Flight.time.real.departure != null)
-                    return helper.GetDateTimeFromEpoch((long)Flight.time.real.departure).ToString("HH:mm");
+                    return helper.GetDateTimeFromEpoch((long)Flight.time.real.departure).ToString("HH:mm")+" UTC";
                 
-                return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.departure).ToString("HH:mm");
+                return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.departure).ToString("HH:mm") + " UTC";
             }
         }
         public string Est
@@ -108,8 +108,8 @@ namespace FlightsMap.ViewModel
             get
             {
                 if(Flight.time.estimated.arrival!=null)
-                    return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.arrival).ToString("HH:mm");
-                return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm");
+                    return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.arrival).ToString("HH:mm") + " UTC";
+                return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm") + " UTC";
             }
         }
         public string StatusAirplane
@@ -145,7 +145,7 @@ namespace FlightsMap.ViewModel
             {
                 try
                 {
-                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.utc).ToString("HH:mm");
+                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.utc).ToString("HH:mm") + " UTC";
                 }
                 catch
                 {
@@ -158,7 +158,7 @@ namespace FlightsMap.ViewModel
             get
             {
                 if (Flight.status.generic.eventTime.local != 0)
-                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.local).ToString("HH:mm");
+                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.local).ToString("HH:mm") + " UTC";
                 else
                     return "N/A";
             }
@@ -171,7 +171,7 @@ namespace FlightsMap.ViewModel
             }
         }
 
-        public string Weather
+        public string WeatherOrigin
         {
             get
             {
@@ -182,10 +182,26 @@ namespace FlightsMap.ViewModel
                 // for each location there are : temperature, main and shortDesc
 
                 // For example, to have the temperature of the destination 
-                // it is : result["destination"]["temperature"]
-
-                return "weather";
+                // it is :
+                return result["origin"]["shortDesc"].ToUpper() + " "+result["origin"]["temperature"] +" Celsius ";
             }
         }
+        public string WeatherDest
+        {
+            get
+            {
+                var result = bl.GetWeather(Flight, FlightPartial);
+                return result["destination"]["shortDesc"].ToUpper() + " "+result["destination"]["temperature"] + " Celsius " ;
+            }
+        }
+        public string WeatherCurrent
+        {
+            get
+            {
+                var result = bl.GetWeather(Flight, FlightPartial);
+                return result["current"]["shortDesc"].ToUpper() + " "+result["current"]["temperature"]+ " Celsius " ;
+            }
+        }
+
     }
 }

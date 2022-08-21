@@ -238,6 +238,9 @@
     <Resource Include="Windows\scheduled.png" />
     <Resource Include="Windows\takaoff.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\weather.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
