@@ -145,7 +145,9 @@ namespace FlightsMap.ViewModel
             {
                 try
                 {
+                    if(Flight.status.generic.eventTime.utc!=null)
                     return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.utc).ToString("HH:mm") + " UTC";
+                    return "N/A";
                 }
                 catch
                 {

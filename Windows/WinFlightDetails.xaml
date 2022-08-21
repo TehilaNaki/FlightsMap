@@ -38,16 +38,16 @@
             <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="-12,59.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="349" Grid.RowSpan="3"/>
             <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="-12,250,0,0" Grid.Row="1" VerticalAlignment="Top" Width="349" Grid.RowSpan="2"/>
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="0.2,0,-11.4,0" Grid.Row="1" VerticalAlignment="Top" Width="348">
-                <Label Content="{Binding WeatherDest}" HorizontalAlignment="Left" Height="28" Margin="9.2,163.2,0,0" VerticalAlignment="Top" Width="327" FontSize="18" Foreground="#DD359EB1"/>
+                <Label HorizontalContentAlignment="Center" Content="{Binding WeatherDest}" HorizontalAlignment="Left" Height="28" Margin="9.2,163.2,0,0" VerticalAlignment="Top" Width="327" FontSize="18" Foreground="#DD359EB1"/>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="250" VerticalAlignment="Top" Width="349" Margin="-12,0,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
             <Label x:Name="Title" Content="Flight Information"  HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="30"  Grid.Row="0" FontWeight="bold" Margin="162,5,150.6,0" FontFamily="Gill Sans Ultra Bold" Grid.ColumnSpan="2" Width="361"/>
-            <Label Grid.Column="0" Content="{Binding Source}" HorizontalAlignment="Center" Margin="70,10,55.8,0" VerticalAlignment="Top" Height="61" Width="211" Grid.Row="1" FontSize="36" Foreground="#FF176573"/>
-            <Label Grid.Column="1" Content="{Binding Destination}" HorizontalAlignment="Center" Margin="86.2,10,39.6,0" VerticalAlignment="Top" Height="62" Width="211" Grid.Row="1" FontSize="36" Foreground="#FF176573"/>
-            <Label  Grid.Column="0" Content="{Binding SourceName}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="332" Margin="0,62,4.8,0" Height="40" Grid.Row="1" FontWeight="Bold"/>
-            <Label  Grid.Column="1" Content="{Binding DestinationName}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="332" Margin="5.2,62,-0.4,0" Height="40" Grid.Row="1" FontWeight="Bold"/>
-            <Image  Source="{Binding StatusAirplane}" HorizontalAlignment="Left" Height="78" Margin="125.2,62,0,0" VerticalAlignment="Top" Width="141" Grid.Column="1"/>
-            <Label Content="{Binding FlightNumber}" FontSize="24"  FontWeight="bold" HorizontalAlignment="Left" Height="45" Margin="10,51,0,0" VerticalAlignment="Top" Width="281" Foreground="#FF0F1415" />
+            <Label Grid.Column="0" Content="{Binding Source}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="3,10,10.4,0" VerticalAlignment="Top" Height="61" Width="329" Grid.Row="1" FontSize="36" Foreground="#FF176573"/>
+            <Label Grid.Column="1" Content="{Binding Destination}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="10.6,10,2,0" VerticalAlignment="Top" Height="61" Width="329" Grid.Row="1" FontSize="36" Foreground="#FF176573"/>
+            <Label  Grid.Column="0" Content="{Binding SourceName}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="332" Margin="0,62,4.8,0" Height="40" Grid.Row="1" FontWeight="Bold"/>
+            <Label  Grid.Column="1" Content="{Binding DestinationName}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="332" Margin="5.2,62,-0.4,0" Height="40" Grid.Row="1" FontWeight="Bold"/>
+            <Image  Source="{Binding StatusAirplane}"  HorizontalAlignment="Left" Height="78" Margin="125.2,62,0,0" VerticalAlignment="Top" Width="141" Grid.Column="1"/>
+            <Label Content="{Binding FlightNumber}"  FontSize="24"  FontWeight="bold" HorizontalAlignment="Left" Height="45" Margin="10,51,0,0" VerticalAlignment="Top" Width="281" Foreground="#FF0F1415" />
             <Label Content="{Binding AirlineCompany}" Margin="173,101,259.6,69" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2" />
             <Label Content="SCHEDULED:" FontWeight="bold" HorizontalAlignment="Left" Height="40" Margin="10,9.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="112"/>
             <Label Content="SCHEDULED:" FontWeight="bold" Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="10.2,9.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="131"/>
@@ -58,11 +58,11 @@
             <Label Content="{Binding Est}" HorizontalAlignment="Left" Height="40" Margin="146.2,9.6,0,0" Grid.Row="3" VerticalAlignment="Top" Width="151" Grid.Column="1" Grid.RowSpan="2"/>
             <Label Content="{Binding SSource}" HorizontalAlignment="Left" Height="40" Margin="122,9.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="155"/>
             <ProgressBar Value="{Binding PBvalue, Mode=OneWay}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="0,9.6,-0.4,0" Grid.Row="5" VerticalAlignment="Top" Width="674" Background="#FFC8E7ED" Foreground="#FF176573" BorderBrush="{x:Null}"/>
-            <Label Content="{Binding WeatherOrigin}" HorizontalAlignment="Left" Height="32" Margin="0,162,0,0" Grid.Row="1" VerticalAlignment="Top" Width="337" FontSize="18" Foreground="#DD359EB1"/>
+            <Label Content="{Binding WeatherOrigin}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="32" Margin="0,162,0,0" Grid.Row="1" VerticalAlignment="Top" Width="337" FontSize="18" Foreground="#DD359EB1"/>
             <Label Content="{Binding PBStatus}" HorizontalAlignment="Left" Height="29" Margin="10,50.6,0,0" Grid.Row="5" VerticalAlignment="Top" Width="267"/>
             <Label Content="{Binding FlightStatus}" HorizontalAlignment="Left" Height="44" Margin="114.2,145,0,0" VerticalAlignment="Top" Width="183" Grid.Column="1" FontSize="16"/>
-            <Label Content="{Binding Stime}" HorizontalAlignment="Left" Height="30" Margin="70,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="207" FontSize="20"/>
-            <Label Content="{Binding Dtime}" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="86.2,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="191" FontSize="20"/>
+            <Label Content="{Binding Stime}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="0,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="332" FontSize="20"/>
+            <Label Content="{Binding Dtime}" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="7.6,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="332" FontSize="20"/>
             <Label Content="AIRLINE COMPANY:" HorizontalAlignment="Left" Height="30" Margin="10,101,0,0" VerticalAlignment="Top" Width="163"/>
             <Label Content="{Binding WeatherCurrent}" HorizontalAlignment="Left" Height="45" Margin="56,150,0,0" VerticalAlignment="Top" Width="322" FontSize="16" Foreground="#DD359EB1" Grid.ColumnSpan="2"/>
             <Image Source="weather.png" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="36" Margin="10,150,0,0" RenderTransformOrigin="0.567,1.103"/>
