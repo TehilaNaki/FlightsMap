@@ -70,9 +70,31 @@ namespace BL
 
             return result;
         }
+
+        public double GetDistance(FlightDetail flight)
+        {
+            return dl.GetDistance(flight);
+        }
+
+        public double GetRemainingDistance(FlightDetail flight, FlightInfoPartial fip)
+        {
+            return dl.GetRemainingDst(flight, fip);
+        }
+
+        public int GetProp(FlightDetail flight, FlightInfoPartial fip)
+        {
+            double remainingProp = GetRemainingDistance(flight, fip) / GetDistance(flight);
+            int tmp = (int)(( 1 - remainingProp) * 100);
+            return tmp;
+        }
         #endregion
 
-
+        public string GetStringRemainingTime(FlightDetail flight)
+        {
+            TimeSpan time= dl.GetTimeBetween(flight);
+            string strtime= time.ToString(@"hh\:mm");
+            return strtime;
+        }
 
     }
 }

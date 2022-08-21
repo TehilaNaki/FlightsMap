@@ -18,5 +18,11 @@ namespace BL
         FlightDetail GetFlightDetail(string partialFlightID);
 
         Dictionary<string, Dictionary<string, string>> GetWeather(FlightDetail flight, FlightInfoPartial fip);
+   
+        double GetDistance(FlightDetail flight);
+        int GetProp(FlightDetail flight, FlightInfoPartial fip);
+        double GetRemainingDistance(FlightDetail flight, FlightInfoPartial fip);
+
+        string GetStringRemainingTime(FlightDetail flight);
     }
 }

@@ -77,20 +77,31 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                if (Flight.time.scheduled.arrival != 0)
+                try
+                {
                     return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm") + " UTC";
-                else
+
+                }
+                catch(Exception ex)
+                {
                     return "N/A";
+                }
+                   
             }
         }
         public string SSource
         {
             get
             {
-                if (Flight.time.scheduled.departure != 0)
+                try
+                {
                     return helper.GetDateTimeFromEpoch(Flight.time.scheduled.departure).ToString("HH:mm") + " UTC";
-                else
+
+                }
+                catch (Exception)
+                {
                     return "N/A";
+                }
             }
         }
         public string Act
@@ -145,11 +156,9 @@ namespace FlightsMap.ViewModel
             {
                 try
                 {
-                    if(Flight.status.generic.eventTime.utc!=null)
                     return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.utc).ToString("HH:mm") + " UTC";
-                    return "N/A";
                 }
-                catch
+                catch(Exception e)
                 {
                     return "N/A";
                 }
@@ -159,24 +168,28 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                if (Flight.status.generic.eventTime.local != 0)
+                try
+                {
                     return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.local).ToString("HH:mm") + " UTC";
-                else
+                }
+                catch (Exception e)
+                {
                     return "N/A";
+                }
             }
         }
-        public int PBvalue
+        public int PBValue
         {
             get
             {
-                return 10;
+                return bl.GetProp(Flight, FlightPartial);
             }
         }
         public string PBStatus
         {
             get
             {
-                return "10% of the flight";
+                return bl.GetRemainingDistance(Flight,FlightPartial).ToString("F1")+" km in "+bl.GetStringRemainingTime(Flight);
             }
         }
 
@@ -192,7 +205,7 @@ namespace FlightsMap.ViewModel
 
                 // For example, to have the temperature of the destination 
                 // it is :
-                return result["origin"]["shortDesc"].ToUpper() + " "+result["origin"]["temperature"] + " C°";
+                return result["origin"]["shortDesc"].ToUpper() + " "+result["origin"]["temperature"] + " °C";
             }
         }
         public string WeatherDest

@@ -7,11 +7,13 @@ using Newtonsoft.Json;
 using BO.Flights;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using GeoCoordinatePortable;
 
 namespace DAL
 {
     public class DLImp : IDL
     {
+
 
         #region flights
         private const string allFlightsURL = @"https://data-cloud.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds=53.203%2C44.17%2C-3.48%2C7.9&satellite=1&mlat=1&flarm=1&adsb=1&gnd=1&air=1&vehicles=1&estimated=1&maxage=14400&gliders=1&stats=1";
@@ -175,9 +177,11 @@ namespace DAL
 
             return currentFlight;   
         }
-            
-    
+
+
         #endregion
+
+        #region user
         public void AddUser(User u)
         {
             using (var db = new FlightContext())
@@ -213,6 +217,28 @@ namespace DAL
             }
         }
 
+        public bool ExistUser(User u)
+        {
+            using (var ctx = new FlightContext())
+            {
+                if (ctx.Users.Find(u.UserId) != null)
+                    return true;
+                return false;
+            }
+        }
+
+        public List<Watch> GetUserWatches(string userName, DateTime start, DateTime end)
+        {
+            using (var db = new FlightContext())
+            {
+                var l = (db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start)).ToList();
+                l.Reverse();
+                return l;
+            }
+        }
+        #endregion
+
+        #region holidays
         public string GetNextWeekHolidies()
         {
             string start = DateTime.Today.ToString("yyyy-MM-dd").Replace('/','-');
@@ -232,7 +258,9 @@ namespace DAL
                 return "";
             }
         }
+        #endregion
 
+        #region weather
         public Dictionary<string,string> GetCurrentWeather(string lon, string lat)
         {
             Dictionary<string,string> result = new Dictionary<string,string>();
@@ -253,7 +281,9 @@ namespace DAL
             }
             return result;
         }
+        #endregion
 
+        #region distance and time
         public Dictionary<string,string> GetLonLatOrigin(FlightDetail flight)
         {
             string lon = flight.airport.origin.position.longitude.ToString();
@@ -268,24 +298,46 @@ namespace DAL
             return new Dictionary<string, string>() { { "lon", lon }, { "lat", lat } };
         }
 
-        public bool ExistUser(User u)
+        public double GetDistance(FlightDetail flight)
         {
-            using (var ctx = new FlightContext())
-            {
-                if (ctx.Users.Find(u.UserId) != null)
-                    return true;
-                return false;
-            }
+            Dictionary<string, string> origin = GetLonLatOrigin(flight);
+            Dictionary<string, string> dest = GetLonLatDestination(flight);
+
+            GeoCoordinate pin1 = new GeoCoordinate(Convert.ToDouble(origin["lat"]), Convert.ToDouble(origin["lon"]));
+            GeoCoordinate pin2 = new GeoCoordinate(Convert.ToDouble(dest["lat"]), Convert.ToDouble(dest["lon"]));
+
+            double distanceBetween = pin1.GetDistanceTo(pin2);
+
+            return distanceBetween/1000;
+
         }
 
-        public List<Watch> GetUserWatches(string userName, DateTime start, DateTime end)
+        public double GetRemainingDst(FlightDetail flight, FlightInfoPartial fip)
         {
-            using (var db = new FlightContext())
-            {
-               var l=(db.Watches.Where(w => w.UserName == userName && w.Date <= end && w.Date >= start)).ToList();
-                l.Reverse();
-                return l;
-            }
+            Dictionary<string, string> dest = GetLonLatDestination(flight);
+
+            GeoCoordinate pin1 = new GeoCoordinate(Convert.ToDouble(fip.Lat), Convert.ToDouble(fip.Long));
+            GeoCoordinate pin2 = new GeoCoordinate(Convert.ToDouble(dest["lat"]), Convert.ToDouble(dest["lon"]));
+
+            double distanceBetween = pin1.GetDistanceTo(pin2);
+
+            
+            double tmp =  distanceBetween/1000; //km
+            return tmp;
         }
+
+        public TimeSpan GetTimeBetween(FlightDetail flight)
+        {
+            HelperClass helperClass = new HelperClass();
+            DateTime origin = DateTime.UtcNow;
+            DateTime dest = helperClass.GetDateTimeFromEpoch(flight.time.scheduled.arrival);
+
+            TimeSpan res=  dest.Subtract(origin);
+            return res;
+
+        }
+
+        #endregion
+
     }
 }

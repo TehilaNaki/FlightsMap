@@ -23,6 +23,10 @@ namespace DAL
         Dictionary<string, string> GetCurrentWeather(string lon, string lat);
         Dictionary<string, string> GetLonLatOrigin(FlightDetail flight);
         Dictionary<string, string> GetLonLatDestination(FlightDetail flight);
+        double GetDistance(FlightDetail flight);
+        TimeSpan GetTimeBetween(FlightDetail flight);
+
+        double GetRemainingDst(FlightDetail flight, FlightInfoPartial fip);
 
     }
 }
