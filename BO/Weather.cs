@@ -9,42 +9,42 @@ namespace BO
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class Current
     {
-        public int dt { get; set; }
-        public int sunrise { get; set; }
-        public int sunset { get; set; }
+        public double dt { get; set; }
+        public double sunrise { get; set; }
+        public double sunset { get; set; }
         public double temp { get; set; } //needit
         public double feels_like { get; set; }  
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public double dew_point { get; set; }
+        public double pressure { get; set; }
+        public double humidity { get; set; }
+        public double dew_podouble { get; set; }
         public double uvi { get; set; }
-        public int clouds { get; set; }
-        public int visibility { get; set; }
+        public double clouds { get; set; }
+        public double visibility { get; set; }
         public double wind_speed { get; set; }
-        public int wind_deg { get; set; }
+        public double wind_deg { get; set; }
         public double wind_gust { get; set; }
         public List<Weather> weather { get; set; } //needit
     }
 
     public class Daily
     {
-        public int dt { get; set; }
-        public int sunrise { get; set; }
-        public int sunset { get; set; }
-        public int moonrise { get; set; }
-        public int moonset { get; set; }
+        public double dt { get; set; }
+        public double sunrise { get; set; }
+        public double sunset { get; set; }
+        public double moonrise { get; set; }
+        public double moonset { get; set; }
         public double moon_phase { get; set; }
         public Temp temp { get; set; }
         public FeelsLike feels_like { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public double dew_point { get; set; }
+        public double pressure { get; set; }
+        public double humidity { get; set; }
+        public double dew_podouble { get; set; }
         public double wind_speed { get; set; }
-        public int wind_deg { get; set; }
+        public double wind_deg { get; set; }
         public double wind_gust { get; set; }
         public List<Weather> weather { get; set; }
-        public int clouds { get; set; }
-        public int pop { get; set; }
+        public double clouds { get; set; }
+        public double pop { get; set; }
         public double uvi { get; set; }
     }
 
@@ -58,26 +58,26 @@ namespace BO
 
     public class Hourly
     {
-        public int dt { get; set; }
+        public double dt { get; set; }
         public double temp { get; set; }
         public double feels_like { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public double dew_point { get; set; }
+        public double pressure { get; set; }
+        public double humidity { get; set; }
+        public double dew_podouble { get; set; }
         public double uvi { get; set; }
-        public int clouds { get; set; }
-        public int visibility { get; set; }
+        public double clouds { get; set; }
+        public double visibility { get; set; }
         public double wind_speed { get; set; }
-        public int wind_deg { get; set; }
+        public double wind_deg { get; set; }
         public double wind_gust { get; set; }
         public List<Weather> weather { get; set; }
-        public int pop { get; set; }
+        public double pop { get; set; }
     }
 
     public class Minutely
     {
-        public int dt { get; set; }
-        public int precipitation { get; set; }
+        public double dt { get; set; }
+        public double precipitation { get; set; }
     }
 
     public class WeatherRoot
@@ -85,7 +85,7 @@ namespace BO
         public double lat { get; set; }
         public double lon { get; set; }
         public string timezone { get; set; }
-        public int timezone_offset { get; set; }
+        public double timezone_offset { get; set; }
         public Current current { get; set; }    //needit
         public List<Minutely> minutely { get; set; }
         public List<Hourly> hourly { get; set; }
@@ -104,7 +104,7 @@ namespace BO
 
     public class Weather
     {
-        public int id { get; set; }
+        public double id { get; set; }
         public string main { get; set; }    //needit
         public string description { get; set; }
         public string icon { get; set; }

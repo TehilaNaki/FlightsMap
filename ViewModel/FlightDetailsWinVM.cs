@@ -15,6 +15,7 @@ namespace FlightsMap.ViewModel
     {
         public WinFlightDetails WFD { get; set; }
         BLImp bl = new BLImp();
+        public HelperClass helper; 
 
         public FlightInfoPartial FlightPartial { get; set; }
         public FlightDetail Flight { get; set; }
@@ -23,6 +24,7 @@ namespace FlightsMap.ViewModel
         {
             FlightPartial = fip;
             Flight = bl.GetFlightDetail(FlightPartial.SourceId);
+            helper = new HelperClass();
         }
         public string FlightNumber
         {
@@ -75,23 +77,30 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                return Flight.time.scheduled.arrival.ToString();
+                if (Flight.time.scheduled.arrival != 0)
+                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm");
+                else
+                    return "N/A";
             }
         }
         public string SSource
         {
             get
             {
-                return Flight.time.scheduled.departure.ToString();
+                if (Flight.time.scheduled.departure != 0)
+                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.departure).ToString("HH:mm");
+                else
+                    return "N/A";
             }
         }
         public string Act
         {
             get
             {
-                if(Flight.time.real.departure!=null)
-                return Flight.time.real.departure.ToString();
-                return Flight.time.estimated.departure.ToString();
+                if (Flight.time.real.departure != null)
+                    return helper.GetDateTimeFromEpoch((long)Flight.time.real.departure).ToString("HH:mm");
+                
+                return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.departure).ToString("HH:mm");
             }
         }
         public string Est
@@ -99,8 +108,8 @@ namespace FlightsMap.ViewModel
             get
             {
                 if(Flight.time.estimated.arrival!=null)
-                return Flight.time.estimated.arrival.ToString();
-                return Flight.time.scheduled.arrival.ToString();
+                    return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.arrival).ToString("HH:mm");
+                return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm");
             }
         }
         public string StatusAirplane
@@ -134,14 +143,24 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                return Flight.status.generic.eventTime.utc.ToString();
+                try
+                {
+                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.utc).ToString("HH:mm");
+                }
+                catch
+                {
+                    return "N/A";
+                }
             }
         }
         public string Dtime
         {
             get
             {
-                return Flight.status.generic.eventTime.local.ToString();
+                if (Flight.status.generic.eventTime.local != 0)
+                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.local).ToString("HH:mm");
+                else
+                    return "N/A";
             }
         }
         public int PBvalue
@@ -149,6 +168,23 @@ namespace FlightsMap.ViewModel
             get
             {
                 return 10;
+            }
+        }
+
+        public string Weather
+        {
+            get
+            {
+                var result = bl.GetWeather(Flight, FlightPartial);
+                //This function returns a Dictionary of dictionaries.
+
+                // there are 3 locations: current, origin and destination
+                // for each location there are : temperature, main and shortDesc
+
+                // For example, to have the temperature of the destination 
+                // it is : result["destination"]["temperature"]
+
+                return "weather";
             }
         }
     }
