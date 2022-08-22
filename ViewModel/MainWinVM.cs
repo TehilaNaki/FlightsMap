@@ -21,7 +21,7 @@ namespace FlightsMap.ViewModel
        
         public MainWinVM()
         {
-            ClockSign(3);
+            ClockSign(1);
             watchCmd = new OpenWatchC();
            
         }

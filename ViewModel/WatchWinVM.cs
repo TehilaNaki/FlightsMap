@@ -19,14 +19,12 @@ namespace FlightsMap.ViewModel
     {
         public WatchWinVM(User u,Calendar c)
         {
-            MyUser = u;
-          
+            MyUser = u;        
             calendar = c;
             c.SelectedDatesChanged += DateChangedEvent;
             if(c.SelectedDates.Count==0)
             {
                 c.SelectedDates.Add(DateTime.Today);
-             //   c.SelectedDates.Add(DateTime.Now);
             }
             ClockSign(2);
         }

@@ -16,7 +16,7 @@
 
     <Grid>
 
-
+        <Image Source="plan.png" Opacity="0.25" Stretch="Fill"></Image>
 
 
 
@@ -68,7 +68,7 @@
             <Image Source="weather.png" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="36" Margin="10,150,0,0" RenderTransformOrigin="0.567,1.103"/>
             <Image Source="weather.png" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="36" Margin="150.2,199,0,0" Grid.Column="1" Grid.Row="1"/>
             <Image Source="weather.png" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="36" Margin="137,199,0,0" Grid.Row="1"/>
-            
+
 
         </Grid>
 

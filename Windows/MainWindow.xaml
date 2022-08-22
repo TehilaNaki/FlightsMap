@@ -44,7 +44,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <m:Map x:Name="myMap"   Background="White" Center="31,35" ZoomLevel="4" 
+        <m:Map x:Name="myMap"   Background="White" Center="34,29" ZoomLevel="6" 
                Mode="Road"  CredentialsProvider="ldthgmBlL93BCM9rLBSM~eCbL9zZTc24E1ojrhTZTsA~AlCdRbfK5wq7Vi3wWaZ4KDljeV-oiXDPo4caheeT2-Kq4TL-XJqdQFHJZYbZey0t" Margin="10,0,5.6,-0.6" 
                Grid.Row="1" >
             <m:MapItemsControl x:Name="myPushpins" ItemsSource="{Binding Push}"/>
