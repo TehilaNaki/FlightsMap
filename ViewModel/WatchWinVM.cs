@@ -20,7 +20,7 @@ namespace FlightsMap.ViewModel
         public WatchWinVM(User u,Calendar c)
         {
             MyUser = u;
-            dateChange = new DateChangeC(this);
+          
             calendar = c;
             c.SelectedDatesChanged += DateChangedEvent;
             if(c.SelectedDates.Count==0)
@@ -58,7 +58,6 @@ namespace FlightsMap.ViewModel
                 OnPropertyChanged("WatchList");
             }
         }
-        public ICommand dateChange { get; set; }
         private void DateChangedEvent(object sender, RoutedEventArgs e)
         {
             DateTime start = calendar.SelectedDates.First();
@@ -78,6 +77,12 @@ namespace FlightsMap.ViewModel
             timer.Interval = new TimeSpan(0, 0, seconds);
             timer.Start();
         }
-
+        public string Title
+        {
+            get
+            {
+                return "View History - " + MyUser.UserId;
+            }
+        }
     }
 }

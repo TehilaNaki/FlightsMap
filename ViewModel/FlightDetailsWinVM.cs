@@ -204,7 +204,7 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                return bl.GetRemainingDistance(Flight,FlightPartial).ToString("F1")+" km in "+bl.GetStringRemainingTime(Flight);
+                return bl.GetRemainingDistance(Flight,FlightPartial).ToString("F1")+" km in "+bl.GetStringRemainingTime(Flight)+" Left.";
             }
         }
 
