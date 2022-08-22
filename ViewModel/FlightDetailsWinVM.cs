@@ -118,9 +118,14 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                if(Flight.time.estimated.arrival!=null)
-                    return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.arrival).ToString("HH:mm") + " UTC";
+                if (Flight.time.estimated.arrival != null)
+                {
+                   return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.arrival).ToString("HH:mm") + " UTC";
+   
+                }
+                
                 return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm") + " UTC";
+                
             }
         }
         public string StatusAirplane
@@ -189,7 +194,7 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                return bl.GetRemainingDistance(Flight,FlightPartial).ToString("F1")+" km in "+bl.GetStringRemainingTime(Flight);
+                return bl.GetRemainingDistance(Flight,FlightPartial).ToString("F1")+" km in "+bl.GetStringRemainingTime(Flight)+" Left.";
             }
         }
 
