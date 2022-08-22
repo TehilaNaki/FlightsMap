@@ -19,14 +19,12 @@ namespace FlightsMap.ViewModel
     {
         public WatchWinVM(User u,Calendar c)
         {
-            MyUser = u;
-          
+            MyUser = u;        
             calendar = c;
             c.SelectedDatesChanged += DateChangedEvent;
             if(c.SelectedDates.Count==0)
             {
                 c.SelectedDates.Add(DateTime.Today);
-             //   c.SelectedDates.Add(DateTime.Now);
             }
             ClockSign(2);
         }
@@ -62,7 +60,7 @@ namespace FlightsMap.ViewModel
         {
             DateTime start = calendar.SelectedDates.First();
             DateTime end = calendar.SelectedDates.Last().AddHours(23.99999);
-           WatchList= new ObservableCollection<Watch>(bl.GetUserWatches(MyUser.UserId, start, end));
+            WatchList= new ObservableCollection<Watch>(bl.GetUserWatches(MyUser.UserId, start, end));
         }
         private void DateChanged()
         {
