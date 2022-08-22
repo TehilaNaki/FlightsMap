@@ -13,6 +13,8 @@ namespace DAL
 {
     public class DLImp : IDL
     {
+        HelperClass helperC = new HelperClass();
+
 
 
         #region flights
@@ -336,8 +338,195 @@ namespace DAL
             return res;
 
         }
+        #endregion
+
+        #region other
+        public string GetFlightNumber(FlightDetail flight)
+        {
+            try
+            {
+                if (flight.identification.number.Default != null)
+                {
+                    var flightnum = flight.identification.number.Default;
+                    if (flight.identification.number.alternative != null)
+                        flightnum += " / " + flight.identification.number.alternative;
+                    return flightnum.ToString();
+                }
+                return "N/A";
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.ToString());
+                return "N/A";
+            }
+        }
+
+        public string GetAirlineCompany(FlightDetail flight)
+        {
+            var airline = flight.airline.name;
+            return airline;
+        }
+
+        public string GetOrigin(FlightInfoPartial fip)
+        {
+            try
+            {
+                return fip.Source;
+            }catch (Exception e)
+            {
+                Debug.Print(e.ToString());
+                return "N/A";
+            }
+        }
+
+        public string GetDestination(FlightInfoPartial fip)
+        {
+            try
+            {
+                return fip.Destination;
+            }
+            catch(Exception e)
+            {
+                Debug.Print(e.ToString());
+                return "N/A";
+            }
+        }
+
+        public string GetOriginName(FlightDetail flight)
+        {
+            try
+            {
+                return flight.airport.origin.name;
+            }catch(Exception e){
+                Debug.Print(e.ToString());
+                return "N/A";
+            }
+        }
+
+        public string GetDestName(FlightDetail flight)
+        {
+            try
+            {
+                return flight.airport.destination.name;
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.ToString());
+                return "N/A";
+            }
+        }
+
+        public string GetScheDest(FlightDetail flight)
+        {
+            try
+            {
+                HelperClass helper = new HelperClass();
+                int utctime = flight.time.scheduled.arrival;
+                int offset = flight.airport.destination.timezone.offset;
+                int total = utctime + offset;
+                return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.ToString());
+                return "N/A";
+            }
+        }
+
+        public string GetSSource(FlightDetail flight)
+        {
+            try
+            {
+                int utctime = flight.time.scheduled.departure;
+                int offset = flight.airport.origin.timezone.offset;
+                int total = utctime + offset;
+                return helperC.GetDateTimeFromEpoch(total).ToString("HH:mm");
+
+            }
+            catch (Exception)
+            {
+                return "N/A";
+            }
+        }
+
+        public string GetActual(FlightDetail flight)
+        {
+            if (flight.time.real.departure != null)
+            {
+                long utctime = (long)flight.time.real.departure;
+                long offset = flight.airport.origin.timezone.offset;
+                long total = utctime + offset;
+                return helperC.GetDateTimeFromEpoch(total).ToString("HH:mm");
+            }
+            return GetScheDest(flight);
+        }
+
+        public string GetEstimated(FlightDetail flight)
+        {
+            if (flight.time.estimated.arrival != null)
+            {
+                long utctime = (long)flight.time.estimated.arrival;
+                long offset = flight.airport.destination.timezone.offset;
+                long total = utctime + offset;
+                return helperC.GetDateTimeFromEpoch(total).ToString("HH:mm");
+
+            }
+            return helperC.GetDateTimeFromEpoch(flight.time.scheduled.arrival).ToString("HH:mm");
+
+        }
+
+        public string GetStatusAirplane(FlightDetail flight)
+        {
+            switch (flight.status.generic.status.text)
+            {
+                case "scheduled":
+                    return "scheduled.png";
+                case "landed":
+                    return "land.png";
+                case "estimated":
+                    return "estimated.png";
+                case "delayed":
+                    return "delayed.png";
+
+            }
+            return "takeoff.png";
+        }
+
+        public string GetFlightStatus(FlightDetail flight)
+        {
+            return flight.status.text;
+        }
+
+        public string GetSTimezone(FlightDetail flight)
+        {
+            try
+            {
+                return flight.airport.origin.timezone.abbr + "(UTC " + flight.airport.origin.timezone.offsetHours + ")";
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.ToString());
+                return "N/A";
+            }
+        }
+
+        public string GetDTimezone(FlightDetail flight)
+        {
+            try
+            {
+                return flight.airport.origin.timezone.abbr + "(UTC " + flight.airport.destination.timezone.offsetHours + ")";
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.ToString());
+                return "N/A";
+            }
+        }
 
         #endregion
+
+
 
     }
 }

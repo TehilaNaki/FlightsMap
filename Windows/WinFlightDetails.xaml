@@ -61,8 +61,8 @@
             <Label Content="{Binding WeatherOrigin}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="32" Margin="0,162,0,0" Grid.Row="1" VerticalAlignment="Top" Width="337" FontSize="18" Foreground="#DD359EB1"/>
             <Label Content="{Binding PBStatus}" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="29" Margin="10.6,39.6,0,0" Grid.Row="5" VerticalAlignment="Top" Width="321" Grid.Column="1"/>
             <Label Content="{Binding FlightStatus}"  HorizontalAlignment="Center" Height="44" Margin="146.6,145,12,0" VerticalAlignment="Top" Width="183" Grid.Column="1" FontSize="16"/>
-            <Label Content="{Binding Stime}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="0,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="332" FontSize="20"/>
-            <Label Content="{Binding Dtime}" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="7.6,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="332" FontSize="20"/>
+            <Label Content="{Binding Stimezone}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="0,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="332" FontSize="20"/>
+            <Label Content="{Binding Dtimezone}" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="7.6,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="332" FontSize="20"/>
             <Label Content="AIRLINE COMPANY:" HorizontalAlignment="Left" Height="30" Margin="10,101,0,0" VerticalAlignment="Top" Width="163"/>
             <Label Content="{Binding WeatherCurrent}" HorizontalAlignment="Left" Height="45" Margin="56,150,0,0" VerticalAlignment="Top" Width="322" FontSize="16" Foreground="#DD359EB1" Grid.ColumnSpan="2"/>
             <Image Source="weather.png" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="36" Margin="10,150,0,0" RenderTransformOrigin="0.567,1.103"/>

@@ -30,162 +30,111 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-
-                var flightnum = Flight.identification.number.Default;
-                if (Flight.identification.number.alternative != null) 
-                    flightnum += " / " + Flight.identification.number.alternative;
-                return flightnum.ToString();
+                return bl.GetFlightNumber(Flight);
             }
         }
         public string AirlineCompany
         {
             get
             {
-                var airline = Flight.airline.name;
-                return airline;
+                return bl.GetAirlineCompany(Flight);
             }
         }
         public string Source
         {
             get
             {
-                return FlightPartial.Source;
+                return bl.GetOrigin(FlightPartial);
             }
         }
         public string Destination
         {
             get
             {
-                return FlightPartial.Destination;
+                return bl.GetDestination(FlightPartial);
             }
         }
         public string SourceName
         {
             get
             {
-                return Flight.airport.origin.name;
+                return bl.GetOriginName(Flight);
             }
         }
         public string DestinationName
         {
             get
             {
-                return Flight.airport.destination.name;
+                return bl.GetDestName(Flight);
             }
         }
         public string SDest
         {
             get
             {
-                try
-                {
-                    int utctime = Flight.time.scheduled.arrival;
-                    int offset = Flight.airport.destination.timezone.offset;
-                    int total = utctime + offset;
-                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
+                return bl.GetScheDest(Flight);
 
-                }
-                catch(Exception ex)
-                {
-                    return "N/A";
-                }
-                   
+
             }
         }
         public string SSource
         {
             get
             {
-                try
-                {
-                    int utctime = Flight.time.scheduled.departure;
-                    int offset = Flight.airport.origin.timezone.offset;
-                    int total = utctime + offset;
-                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
+                return bl.GetSSource(Flight);
 
-                }
-                catch (Exception)
-                {
-                    return "N/A";
-                }
             }
         }
         public string Act
         {
             get
             {
-                if (Flight.time.real.departure != null) { 
-                    long utctime = (long)Flight.time.real.departure;
-                    long offset = Flight.airport.origin.timezone.offset;
-                    long total = utctime + offset;
-                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
-                }
-                return SDest;
+                return bl.GetActual(Flight);
+
             }
         }
         public string Est
         {
             get
             {
-                if (Flight.time.estimated.arrival != null)
-                {
-                    long utctime = (long)Flight.time.estimated.arrival;
-                    long offset = Flight.airport.destination.timezone.offset;
-                    long total = utctime + offset;
-                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
+                return bl.GetEstimated(Flight);
 
-                }
-                return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm");
             }
         }
         public string StatusAirplane
         {
             get
             {
-                switch(Flight.status.generic.status.text)
-                {
-                    case "scheduled":
-                        return "scheduled.png";
-                    case "landed":
-                        return "land.png";
-                    case "estimated":
-                        return "estimated.png";
-                    case "delayed":
-                        return "delayed.png";
+                return bl.GetStatusAirplane(Flight);
 
-                }
-                return "takeoff.png";
             }
         }
         public string FlightStatus
         {
             get
             {
-                return Flight.status.text;
+                return bl.GetFlightStatus(Flight);
+
             }
         }
 
-        public string Stime
+        public string Stimezone
         {
             get
             {
-         
-                    if(Flight.status.generic.eventTime!=null)
-                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.utc).ToString("HH:mm") + " UTC";
-                    return "N/A";
-                
-               
+                return bl.GetSTimezone(Flight);
+
+
+
             }
-        }
-        public string Dtime
+        }   
+        public string Dtimezone
         {
             get
             {
-            
-                    if (Flight.status.generic.eventTime != null)
-                        return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.local).ToString("HH:mm") + " UTC";
-                    return "N/A";
-               
+                return bl.GetDTimezone(Flight);
+
+
             }
         }
         public int PBValue
@@ -223,7 +172,7 @@ namespace FlightsMap.ViewModel
             get
             {
                 var result = bl.GetWeather(Flight, FlightPartial);
-                return result["destination"]["shortDesc"].ToUpper() + " "+result["destination"]["temperature"] + " C°";
+                return result["destination"]["shortDesc"].ToUpper() + " "+result["destination"]["temperature"] + " °C";
             }
         }
         public string WeatherCurrent
@@ -231,7 +180,7 @@ namespace FlightsMap.ViewModel
             get
             {
                 var result = bl.GetWeather(Flight, FlightPartial);
-                return result["current"]["shortDesc"].ToUpper() + " "+result["current"]["temperature"]+ " C°";
+                return result["current"]["shortDesc"].ToUpper() + " "+result["current"]["temperature"]+ " °C";
             }
         }
 

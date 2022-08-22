@@ -28,5 +28,23 @@ namespace DAL
 
         double GetRemainingDst(FlightDetail flight, FlightInfoPartial fip);
 
+        string GetFlightNumber(FlightDetail flight);
+        string GetAirlineCompany(FlightDetail flight);
+        string GetOrigin(FlightInfoPartial fip);
+        string GetDestination(FlightInfoPartial fip);
+        string GetOriginName(FlightDetail flight);
+        string GetDestName(FlightDetail flight);
+        string GetScheDest(FlightDetail flight);
+        string GetSSource(FlightDetail flight);
+        string GetActual(FlightDetail flight);
+        string GetEstimated(FlightDetail flight);
+        string GetStatusAirplane(FlightDetail flight);
+        string GetFlightStatus(FlightDetail flight);
+        string GetSTimezone(FlightDetail flight);
+        string GetDTimezone(FlightDetail flight);
+
+
+
+
     }
 }

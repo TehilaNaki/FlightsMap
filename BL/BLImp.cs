@@ -96,5 +96,75 @@ namespace BL
             return strtime;
         }
 
+        public string GetFlightNumber(FlightDetail flight)
+        {
+            return dl.GetFlightNumber(flight);
+
+        }
+
+        public string GetAirlineCompany(FlightDetail flight)
+        {
+            return dl.GetAirlineCompany(flight);
+        }
+
+        public string GetOrigin(FlightInfoPartial fip)
+        {
+            return dl.GetOrigin(fip);
+        }
+
+        public string GetDestination(FlightInfoPartial fip)
+        {
+            return dl.GetDestination(fip);
+        }
+
+        public string GetOriginName(FlightDetail flight)
+        {
+            return dl.GetOriginName(flight);
+        }
+
+        public string GetDestName(FlightDetail flight)
+        {
+            return dl.GetDestName(flight);
+        }
+
+        public string GetScheDest(FlightDetail flight)
+        {
+            return dl.GetScheDest(flight);
+        }
+
+        public string GetSSource(FlightDetail flight)
+        {
+            return dl.GetSSource(flight);
+        }
+
+        public string GetActual(FlightDetail flight)
+        {
+            return dl.GetActual(flight);
+        }
+
+        public string GetEstimated(FlightDetail flight)
+        {
+            return dl.GetEstimated(flight);
+        }
+
+        public string GetStatusAirplane(FlightDetail flight)
+        {
+            return dl.GetStatusAirplane(flight);
+        }
+
+        public string GetFlightStatus(FlightDetail flight)
+        {
+            return dl.GetFlightStatus(flight);
+        }
+
+        public string GetSTimezone(FlightDetail flight)
+        {
+            return dl.GetSTimezone(flight);
+        }
+
+        public string GetDTimezone(FlightDetail flight)
+        {
+            return dl.GetDTimezone(flight);
+        }
     }
 }
