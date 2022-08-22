@@ -208,9 +208,7 @@
       <Name>BO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Windows\airplane_take_off_48px.png" />
   </ItemGroup>

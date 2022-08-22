@@ -60,7 +60,7 @@ namespace FlightsMap.ViewModel
         {
             DateTime start = calendar.SelectedDates.First();
             DateTime end = calendar.SelectedDates.Last().AddHours(23.99999);
-           WatchList= new ObservableCollection<Watch>(bl.GetUserWatches(MyUser.UserId, start, end));
+            WatchList= new ObservableCollection<Watch>(bl.GetUserWatches(MyUser.UserId, start, end));
         }
         private void DateChanged()
         {

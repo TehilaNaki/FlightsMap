@@ -266,7 +266,13 @@ namespace DAL
         {
             HelperClass helperClass = new HelperClass();
             DateTime origin = DateTime.UtcNow;
-            DateTime dest = helperClass.GetDateTimeFromEpoch(flight.time.scheduled.arrival);
+            long time;
+            if (flight.time.estimated.arrival != null)
+            {
+                 time = (long)flight.time.estimated.arrival;
+            }
+            else time= flight.time.scheduled.arrival;
+            DateTime dest = helperClass.GetDateTimeFromEpoch(time);
 
             TimeSpan res=  dest.Subtract(origin);
             return res;
