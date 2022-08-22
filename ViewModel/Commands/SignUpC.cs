@@ -34,7 +34,7 @@ namespace FlightsMap.ViewModel.Commands
             else
             {
                 new BLImp().AddUser(p);
-                MessageBox.Show("User:" + p.UserId + " added succsesfully!");
+                MessageBox.Show("User: " + p.UserId + " added succsesfully!");
                 MainWinVM mvm = new MainWinVM();
                 mvm.MyUser = p;
                 mvm.MW = new MainWindow();

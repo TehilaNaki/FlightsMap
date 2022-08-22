@@ -25,7 +25,7 @@
         <Calendar x:Name="calender" SelectionMode="SingleRange" HorizontalAlignment="Left" Height="358" Margin="10,61,0,0" VerticalAlignment="Top" Width="241">
 
         </Calendar>
-        <Label Content="{Binding Title}" FontSize="30" HorizontalAlignment="Center"  Margin="39,10,310.2,0" VerticalAlignment="Top" FontFamily="Gill Sans Ultra Bold" Height="37" Width="494"  />
+        <Label Content="{Binding Title}" FontSize="30" HorizontalAlignment="Center"  Margin="39,10,310.2,0" VerticalAlignment="Top" FontFamily="Gill Sans Ultra Bold" Height="44" Width="494"  />
         <Image HorizontalAlignment="Left" Height="44" Margin="71,405,0,0" VerticalAlignment="Top" Width="47" Source="airplane_take_off_48px.png"/>
         <Image HorizontalAlignment="Left" Height="44" Margin="714,10,0,0" VerticalAlignment="Top" Width="49" Source="land.png"/>
         <Image HorizontalAlignment="Left" Height="41" Margin="10,429,0,0" VerticalAlignment="Top" Width="56" Source="takaoff.png"/>

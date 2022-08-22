@@ -30,9 +30,11 @@
                     <Label Content="User name" HorizontalAlignment="Left" Height="33" Margin="21,52,0,0" VerticalAlignment="Top" Width="96" FontWeight="Bold" FontSize="16" />
                     <Label Content="Password" Height="33" Margin="21,90,286.2,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
                     <Label Content="Email" Height="33" Margin="21,133,319.2,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                    <TextBox x:Name="passwordBox" MaxLength="10" Margin="158,98,63.2,195.2" Text = "{Binding MyUserS.Password, Mode=TwoWay}" FontWeight="Bold"/>
-                    <TextBox x:Name="email" HorizontalAlignment="Left" Height="33" Margin="158,52,0,0"  VerticalAlignment="Top" Width="182" MaxLength="12" FontSize="16" Text = "{Binding MyUserS.Email, Mode=TwoWay}"/>
-                    <TextBox x:Name="username1" HorizontalAlignment="Left" Height="30" Margin="158,133,0,0"  VerticalAlignment="Top" Width="182" MaxLength="12" FontSize="16" Text = "{Binding MyUserS.UserId, Mode=TwoWay}"/>
+                    <TextBox x:Name="username1" HorizontalAlignment="Left" Height="30" Margin="158,47,0,0"  VerticalAlignment="Top" Width="182" MaxLength="12" FontSize="16" Text = "{Binding MyUserS.UserId, Mode=TwoWay}"/>
+                    <TextBox x:Name="passwordBox" HorizontalAlignment="Left" Height="30" Margin="158,93,0,0"  VerticalAlignment="Top" Width="182" MaxLength="12" FontSize="16" Text = "{Binding MyUserS.Password, Mode=TwoWay}"/>
+                   
+                    <TextBox x:Name="email" HorizontalAlignment="Left" Height="33" Margin="158,133,0,0"  VerticalAlignment="Top" Width="182" MaxLength="12" FontSize="16" Text = "{Binding MyUserS.Email, Mode=TwoWay}"/>
+                   
                     <Button x:Name="enter1" Content="Sign Up"  HorizontalAlignment="Left" Height="34" Margin="158,219,0,0" VerticalAlignment="Top" Width="147"  FontWeight="Bold" FontSize="16"
                              Command="{Binding SignC}" CommandParameter="{Binding MyUserS}"/>
                 </Grid>

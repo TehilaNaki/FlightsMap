@@ -56,7 +56,7 @@
             <TextBlock x:Name="txtButton"><Run Text="View History"/></TextBlock>
         </Button>
         <Label x:Name="Title" Content="Flights Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="35"  Grid.Row="0" FontWeight="bold" Margin="10,10,0,0" FontFamily="Gill Sans Ultra Bold"/>
-        <Label Height="41" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="331,19,0,10" VerticalAlignment="Center" Width="560" Grid.Row="0" FontFamily="Arial Rounded MT Bold" FontSize="22" Foreground="#DD461FAB" FontWeight="Bold"/>
+        <Label Height="41" Content="{Binding TitleText}" HorizontalAlignment="Left" Margin="326,19,0,10.4" VerticalAlignment="Center" Width="560" Grid.Row="0" FontFamily="Arial Rounded MT Bold" FontSize="20" Foreground="#DD461FAB"/>
     </Grid>
 
 </Window>

@@ -159,28 +159,23 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                try
-                {
+         
+                    if(Flight.status.generic.eventTime!=null)
                     return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.utc).ToString("HH:mm") + " UTC";
-                }
-                catch(Exception e)
-                {
                     return "N/A";
-                }
+                
+               
             }
         }
         public string Dtime
         {
             get
             {
-                try
-                {
-                    return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.local).ToString("HH:mm") + " UTC";
-                }
-                catch (Exception e)
-                {
+            
+                    if (Flight.status.generic.eventTime != null)
+                        return helper.GetDateTimeFromEpoch(Flight.status.generic.eventTime.local).ToString("HH:mm") + " UTC";
                     return "N/A";
-                }
+               
             }
         }
         public int PBValue

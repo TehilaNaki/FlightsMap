@@ -25,6 +25,14 @@ namespace FlightsMap.ViewModel
             watchCmd = new OpenWatchC();
            
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         public ICommand watchCmd { get; set; }
         public User MyUser { get; set; }
         public MainWindow MW { get; set; }
@@ -65,14 +73,7 @@ namespace FlightsMap.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        
         private void AddPushPineIn(FlightInfoPartial f)
         {          
             ControlTemplate template = (ControlTemplate)MW.FindResource("pushpin_customIn");
@@ -111,6 +112,60 @@ namespace FlightsMap.ViewModel
                 AddPushPineOut(flight);
             }
         }
+        private void UpdateFlight(FlightInfoPartial selected)
+        {
+            var Flight = bl.GetFlightDetail(selected.SourceId);
+
+            // Update map
+            if (Flight != null)
+            {
+                var OrderedPlaces = (from f in Flight.trail
+                                     orderby f.ts
+                                     select f).ToList<Trail>();
+
+                addNewPolyLine(OrderedPlaces);
+
+                Trail CurrentPlace = null;
+                ControlTemplate template = (ControlTemplate)MW.FindResource("location");
+                Pushpin PinCurrent = new Pushpin { ToolTip = selected.FlightCode, Template = template };
+                if (Flight.airport.origin != null)
+                {
+                    Pushpin PinOrigin = new Pushpin { ToolTip = Flight.airport.origin.name, Template = template };
+
+                    PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };
+                    MapLayer.SetPositionOrigin(PinCurrent, origin);
+
+
+                    CurrentPlace = OrderedPlaces.Last<Trail>();
+                    var PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
+                    PinCurrent.Location = PlaneLocation;
+
+
+                    CurrentPlace = OrderedPlaces.First<Trail>();
+                    PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
+                    PinOrigin.Location = PlaneLocation;
+                    Origin.Clear();
+                    Origin.Add(PinOrigin);
+                }
+
+            }
+        }
+        void addNewPolyLine(List<Trail> Route)
+        {
+            MapPolyline polyline = new MapPolyline();
+            polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Purple);
+            polyline.StrokeThickness = 3;
+            polyline.StrokeDashOffset = 2;
+            polyline.StrokeDashArray = new System.Windows.Media.DoubleCollection() { 4, 4 };
+
+            polyline.Locations = new LocationCollection();
+            foreach (var item in Route)
+            {
+                polyline.Locations.Add(new Location(item.lat, item.lng));
+            }
+            MW.myMap.Children.RemoveRange(2, MW.myMap.Children.Count - 2);
+            MW.myMap.Children.Add(polyline);
+        }
         private void ClockSign(int seconds)
         {
             DispatcherTimer timer = new DispatcherTimer();
@@ -127,7 +182,6 @@ namespace FlightsMap.ViewModel
             UpdateFlight(flight);
             // open details window
             FlightDetailsWinVM fdvm = new FlightDetailsWinVM(flight);
-            //fdvm.FlightPartial = flight;
             WinFlightDetails wfd = new WinFlightDetails();
             fdvm.WFD = wfd;
             fdvm.WFD.DataContext = fdvm;
@@ -150,60 +204,7 @@ namespace FlightsMap.ViewModel
             fdvm.WFD.DataContext = fdvm;
             fdvm.WFD.Show();
         }
-        private void UpdateFlight(FlightInfoPartial selected)
-        {
-            var Flight = bl.GetFlightDetail(selected.SourceId);
-
-            // Update map
-            if (Flight != null)
-            {
-                var OrderedPlaces = (from f in Flight.trail
-                                     orderby f.ts
-                                     select f).ToList<Trail>();
-
-                addNewPolyLine(OrderedPlaces);
-
-                Trail CurrentPlace = null;
-                ControlTemplate template = (ControlTemplate)MW.FindResource("location");
-                Pushpin PinCurrent = new Pushpin { ToolTip = selected.FlightCode,Template=template };
-                if (Flight.airport.origin != null)
-                {
-                    Pushpin PinOrigin = new Pushpin { ToolTip = Flight.airport.origin.name, Template = template };
-
-                    PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };
-                    MapLayer.SetPositionOrigin(PinCurrent, origin);
-
-
-                    CurrentPlace = OrderedPlaces.Last<Trail>();
-                    var PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
-                    PinCurrent.Location = PlaneLocation;
-
-
-                    CurrentPlace = OrderedPlaces.First<Trail>();
-                    PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
-                    PinOrigin.Location = PlaneLocation;
-                    Origin.Clear();
-                    Origin.Add(PinOrigin);
-                }
-            
-            }
-        }
-        void addNewPolyLine(List<Trail> Route)
-        {
-            MapPolyline polyline = new MapPolyline();
-           polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Purple);
-            polyline.StrokeThickness = 3;
-            polyline.StrokeDashOffset = 2;
-            polyline.StrokeDashArray = new System.Windows.Media.DoubleCollection() { 4, 4 };
-
-            polyline.Locations = new LocationCollection();
-            foreach (var item in Route)
-            {
-                polyline.Locations.Add(new Location(item.lat, item.lng));
-            }
-            MW.myMap.Children.RemoveRange(2, MW.myMap.Children.Count - 2);
-            MW.myMap.Children.Add(polyline);
-        }
+      
 
     }
 }

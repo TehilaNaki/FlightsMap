@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace FlightsMap.ViewModel
 {
-   public class EnterWinVM:INotifyPropertyChanged
+   public class EnterWinVM
     {
         public EnterWinVM()
         {
@@ -20,11 +20,8 @@ namespace FlightsMap.ViewModel
             MyUserL = new User();
             MyUserS=new User();
         }
-        //User myUser = new User { UserId = "tehila", Password = "11", Email = "11@" };
+    
         BLImp bl = new BLImp();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ICommand SignC { get; set; }
         public ICommand LogC { get; set; }
         public User MyUserL { get; set; }
