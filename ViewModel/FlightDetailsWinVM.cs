@@ -79,7 +79,10 @@ namespace FlightsMap.ViewModel
             {
                 try
                 {
-                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm") + " UTC";
+                    int utctime = Flight.time.scheduled.arrival;
+                    int offset = Flight.airport.destination.timezone.offset;
+                    int total = utctime + offset;
+                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
 
                 }
                 catch(Exception ex)
@@ -95,7 +98,10 @@ namespace FlightsMap.ViewModel
             {
                 try
                 {
-                    return helper.GetDateTimeFromEpoch(Flight.time.scheduled.departure).ToString("HH:mm") + " UTC";
+                    int utctime = Flight.time.scheduled.departure;
+                    int offset = Flight.airport.origin.timezone.offset;
+                    int total = utctime + offset;
+                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
 
                 }
                 catch (Exception)
@@ -108,19 +114,28 @@ namespace FlightsMap.ViewModel
         {
             get
             {
-                if (Flight.time.real.departure != null)
-                    return helper.GetDateTimeFromEpoch((long)Flight.time.real.departure).ToString("HH:mm")+" UTC";
-                
-                return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.departure).ToString("HH:mm") + " UTC";
+                if (Flight.time.real.departure != null) { 
+                    long utctime = (long)Flight.time.real.departure;
+                    long offset = Flight.airport.origin.timezone.offset;
+                    long total = utctime + offset;
+                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
+                }
+                return SDest;
             }
         }
         public string Est
         {
             get
             {
-                if(Flight.time.estimated.arrival!=null)
-                    return helper.GetDateTimeFromEpoch((long)Flight.time.estimated.arrival).ToString("HH:mm") + " UTC";
-                return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm") + " UTC";
+                if (Flight.time.estimated.arrival != null)
+                {
+                    long utctime = (long)Flight.time.estimated.arrival;
+                    long offset = Flight.airport.destination.timezone.offset;
+                    long total = utctime + offset;
+                    return helper.GetDateTimeFromEpoch(total).ToString("HH:mm");
+
+                }
+                return helper.GetDateTimeFromEpoch(Flight.time.scheduled.arrival).ToString("HH:mm");
             }
         }
         public string StatusAirplane

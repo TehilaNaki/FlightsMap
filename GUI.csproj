@@ -241,6 +241,12 @@
   <ItemGroup>
     <Resource Include="Windows\weather.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\Images\airplane_bkgd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\airplane_bkgd.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
